@@ -1,3 +1,7 @@
 {
-	"recommendations": ["biomejs.biome", "oven.bun-vscode"]
+	"recommendations": [
+		"biomejs.biome",
+		"moonrepo.moon-console",
+		"oven.bun-vscode"
+	]
 }

@@ -1,0 +1,10 @@
+[package]
+name = "create-janustack"
+description = "Create Janustack CLI tool"
+edition.workspace = true
+repository.workspace = true
+version = "0.1.0"
+
+[[bin]]
+name = "create-janustack"
+path = "src/main.rs"
