@@ -1,12 +1,10 @@
 {
-	"name": "@janustack/create-janustack-freebsd-x64",
+	"name": "create-janustack-freebsd-x64",
+	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.0.0",
 	"os": ["freebsd"],
 	"cpu": ["x64"],
 	"main": "create-janustack.freebsd-x64.node",
 	"files": ["create-janustack.freebsd-x64.node"],
-	"license": "MIT",
-	"engines": {
-		"node": ">= 10"
-	}
+	"license": "MIT"
 }

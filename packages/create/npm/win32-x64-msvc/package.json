@@ -1,12 +1,11 @@
 {
-	"name": "@janustack/create-janustack-win32-x64-msvc",
+	"name": "create-janustack-win32-x64-msvc",
+	"description": "",
+	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.0.0",
 	"os": ["win32"],
 	"cpu": ["x64"],
 	"main": "create-janustack.win32-x64-msvc.node",
 	"files": ["create-janustack.win32-x64-msvc.node"],
-	"license": "MIT",
-	"engines": {
-		"node": ">= 10"
-	}
+	"license": "MIT"
 }

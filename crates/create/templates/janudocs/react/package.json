@@ -1,0 +1,19 @@
+{
+	"name": "",
+	"description": "",
+	"private": true,
+	"type": "module",
+	"dependencies": {
+		"@tailwindcss/vite": "^4.1.7",
+		"@tanstack/react-router": "^1.120.10",
+		"react": "^19.1.0",
+		"react-dom": "^19.1.0",
+		"tailwindcss": "^4.1.7"
+	},
+	"devDependencies": {
+		"@types/react": "^19.1.5",
+		"@types/react-dom": "^19.1.5",
+		"typescript": "^5.8.3",
+		"vite": "^6.3.5"
+	}
+}

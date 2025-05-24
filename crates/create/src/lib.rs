@@ -5,7 +5,7 @@ use utils::prompts;
 
 use crate::{
     package_manager::PackageManager,
-    template::{ElectronSubTemplate, TauriSubTemplate, Template},
+    template::{JanudocsSubTemplate, Template},
     utils::colors::*,
 };
 
@@ -109,44 +109,17 @@ where
                 prompts::select("Select a framework:", &templates_no_flavors, Some(0))?.unwrap();
 
             match selected_template {
-                Template::Tauri(None) => {
+                Template::Janudocs(None) => {
                     let sub_templates = vec![
-                        TauriSubTemplate::Next,
-                        TauriSubTemplate::React,
-                        TauriSubTemplate::Solid,
+                        JanudocsSubTemplate::React,
+                        JanudocsSubTemplate::Solid,
                     ];
 
                     let sub_template =
-                        prompts::select("Select a Tauri template:", &sub_templates, Some(0))?
+                        prompts::select("Select an Janudocs template:", &sub_templates, Some(0))?
                             .unwrap();
 
-                    Template::Tauri(Some(*sub_template))
-                }
-                Template::Tauri2(None) => {
-                    let sub_templates = vec![
-                        TauriSubTemplate::Next,
-                        TauriSubTemplate::React,
-                        TauriSubTemplate::Solid,
-                    ];
-
-                    let sub_template =
-                        prompts::select("Select a Tauri2 template:", &sub_templates, Some(0))?
-                            .unwrap();
-
-                    Template::Tauri2(Some(*sub_template))
-                }
-                Template::Electron(None) => {
-                    let sub_templates = vec![
-                        ElectronSubTemplate::Next,
-                        ElectronSubTemplate::React,
-                        ElectronSubTemplate::Solid,
-                    ];
-
-                    let sub_template =
-                        prompts::select("Select an Electron template:", &sub_templates, Some(0))?
-                            .unwrap();
-
-                    Template::Electron(Some(*sub_template))
+                    Template::Janudocs(Some(*sub_template))
                 }
                 _ => *selected_template,
             }
@@ -225,12 +198,6 @@ fn to_valid_pkg_name(project_name: &str) -> String {
 
 fn get_run_cmd(pkg_manager: &PackageManager, template: &Template) -> &'static str {
     match template {
-        Template::Tauri(_) => match pkg_manager {
-            PackageManager::Bun => "bun tauri dev",
-            PackageManager::Npm => "npm tauri dev",
-            PackageManager::Pnpm => "pnpm run tauri dev",
-            PackageManager::Yarn => "yarn tauri dev",
-        },
         _ => pkg_manager.default_cmd(),
     }
 }

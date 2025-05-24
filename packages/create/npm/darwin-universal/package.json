@@ -1,11 +1,9 @@
 {
-	"name": "@janustack/create-janustack-darwin-universal",
+	"name": "create-janustack-darwin-universal",
+	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.0.0",
 	"os": ["darwin"],
 	"main": "create-janustack.darwin-universal.node",
 	"files": ["create-janustack.darwin-universal.node"],
-	"license": "MIT",
-	"engines": {
-		"node": ">= 10"
-	}
+	"license": "MIT"
 }

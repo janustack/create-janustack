@@ -24,7 +24,7 @@ impl Default for Args {
     Self {
       project_name: Some("janustack-project".to_string()),
       manager: Some(PackageManager::Bun),
-      template: Some(Template::React),
+      template: Some(Template::Janext),
       force: false,
     }
   }

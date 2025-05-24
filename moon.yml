@@ -1,2 +1,5 @@
 language: 'rust'
 type: 'application'
+
+toolchain:
+  default: bun

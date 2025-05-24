@@ -1,3 +1,3 @@
-# `@janustack/create-janustack-android-arm-eabi`
+# `create-janustack-android-arm-eabi`
 
-This is the **armv7-linux-androideabi** binary for `@janustack/create-janustack`
+This is the **armv7-linux-androideabi** binary for `create-janustack`

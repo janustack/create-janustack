@@ -20,101 +20,46 @@ pub(crate) trait Displayable {
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum ElectronSubTemplate {
-    Next,
+pub enum JanudocsSubTemplate {
     React,
     Solid,
 }
 
-impl ElectronSubTemplate {
+impl JanudocsSubTemplate {
     pub(crate) fn to_simple_string(&self) -> &str {
         match self {
-            ElectronSubTemplate::Next => "next",
-            ElectronSubTemplate::React => "react",
-            ElectronSubTemplate::Solid => "solid",
+            JanudocsSubTemplate::React => "react",
+            JanudocsSubTemplate::Solid => "solid",
         }
     }
 }
 
-impl Displayable for ElectronSubTemplate {
+impl Displayable for JanudocsSubTemplate {
     fn display_text(&self) -> &'static str {
         match self {
-            ElectronSubTemplate::Next => "\x1b[32mVue - (https://vuejs.org/)\x1b[0m",
-            ElectronSubTemplate::React => "\x1b[36mReact - (https://reactjs.org/)\x1b[0m",
-            ElectronSubTemplate::Solid => {
-                "\x1b[38;2;68;206;246mSolid - (https://solidjs.com/)\x1b[0m"
-            }
+            JanudocsSubTemplate::React => "\x1b[36mReact\x1b[0m",
+            JanudocsSubTemplate::Solid => "\x1b[38;2;68;206;246mSolid\x1b[0m",
         }
     }
 }
 
-impl Display for ElectronSubTemplate {
+impl Display for JanudocsSubTemplate {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         fmt_sub_template(self, f)
     }
 }
 
-impl FromStr for ElectronSubTemplate {
+impl FromStr for JanudocsSubTemplate {
     type Err = String;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let map: HashMap<&str, ElectronSubTemplate> = HashMap::from([
-            ("next", ElectronSubTemplate::Next),
-            ("react", ElectronSubTemplate::React),
-            ("solid", ElectronSubTemplate::Solid),
+        let map: HashMap<&str, JanudocsSubTemplate> = HashMap::from([
+            ("react", JanudocsSubTemplate::React),
+            ("solid", JanudocsSubTemplate::Solid),
         ]);
         match map.get(s) {
             Some(template) => Ok(*template),
-            None => Err(format!("{s} is not a valid Electron template.")),
-        }
-    }
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum TauriSubTemplate {
-    Next,
-    React,
-    Solid,
-}
-
-impl TauriSubTemplate {
-    pub(crate) fn to_simple_string(&self) -> &str {
-        match self {
-            TauriSubTemplate::Next => "next",
-            TauriSubTemplate::React => "react",
-            TauriSubTemplate::Solid => "solid",
-        }
-    }
-}
-
-impl Displayable for TauriSubTemplate {
-    fn display_text(&self) -> &'static str {
-        match self {
-            TauriSubTemplate::Next => "\x1b[32mNext - (https://vuejs.org/)\x1b[0m",
-            TauriSubTemplate::React => "\x1b[36mReact - (https://react.dev/)\x1b[0m",
-            TauriSubTemplate::Solid => "\x1b[38;2;68;206;246mSolid - (https://solidjs.com/)\x1b[0m",
-        }
-    }
-}
-
-impl Display for TauriSubTemplate {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        fmt_sub_template(self, f)
-    }
-}
-
-impl FromStr for TauriSubTemplate {
-    type Err = String;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        let map: HashMap<&str, TauriSubTemplate> = HashMap::from([
-            ("next", TauriSubTemplate::Next),
-            ("react", TauriSubTemplate::React),
-            ("solid", TauriSubTemplate::Solid),
-        ]);
-        match map.get(s) {
-            Some(template) => Ok(*template),
-            None => Err(format!("{s} is not a valid Electron template.")),
+            None => Err(format!("{s} is not a valid Janudocs template.")),
         }
     }
 }
@@ -122,32 +67,22 @@ impl FromStr for TauriSubTemplate {
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[non_exhaustive]
 pub enum Template {
-    Next,
-    React,
-    Solid,
-    Tauri2(Option<TauriSubTemplate>),
-    Tauri(Option<TauriSubTemplate>),
-    Electron(Option<ElectronSubTemplate>),
+    Janext,
+    Janudocs(Option<JanudocsSubTemplate>),
 }
 
 impl Default for Template {
     fn default() -> Self {
-        Template::React
+        Template::Janext
     }
 }
 
 impl Display for Template {
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
         match self {
-            Template::Next => write!(f, "next"),
-            Template::React => write!(f, "react"),
-            Template::Solid => write!(f, "solid"),
-            Template::Tauri2(None) => write!(f, "tauri2"),
-            Template::Tauri2(Some(sub_template)) => write!(f, "tauri2-{sub_template}"),
-            Template::Tauri(None) => write!(f, "tauri"),
-            Template::Tauri(Some(sub_template)) => write!(f, "tauri-{sub_template}"),
-            Template::Electron(None) => write!(f, "electron"),
-            Template::Electron(Some(sub_template)) => write!(f, "electron-{sub_template}"),
+            Template::Janext => write!(f, "janext"),
+            Template::Janudocs(None) => write!(f, "janudocs"),
+            Template::Janudocs(Some(sub_template)) => write!(f, "janudocs-{sub_template}"),
         }
     }
 }
@@ -157,12 +92,8 @@ impl FromStr for Template {
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         match s {
-            "next" => Ok(Template::Next),
-            "react" => Ok(Template::React),
-            "solid" => Ok(Template::Solid),
-            "tauri2" => Ok(Template::Tauri2(None)),
-            "tauri" => Ok(Template::Tauri(None)),
-            "electron" => Ok(Template::Electron(None)),
+            "janext" => Ok(Template::Janext),
+            "janudocs" => Ok(Template::Janudocs(None)),
             _ => Err(format!(
                 "{YELLOW}{s}{RESET} is not a valid template. Valid templates are [{}]",
                 Template::ALL_TOP_LEVEL
@@ -178,42 +109,20 @@ impl FromStr for Template {
 impl Displayable for Template {
     fn display_text(&self) -> &'static str {
         match self {
-            Template::Next => "\x1b[33mNext\x1b[0m",
-            Template::React => "\x1b[36mReact - (https://react.dev/)\x1b[0m",
-            Template::Solid => "\x1b[38;2;68;206;246mSolid - (https://solidjs.com/)\x1b[0m",
-            Template::Tauri2(None) => "\x1b[38;2;255;137;54mTauri2 - (https://tauri.app/)\x1b[0m",
-            Template::Tauri(None) => "\x1b[38;2;255;137;54mTauri - (https://tauri.app/)\x1b[0m",
-            Template::Tauri2(Some(sub_template)) => match sub_template {
-                TauriSubTemplate::Next => "\x1b[38;2;255;215;0mTauri2 with Next\x1b[0m",
-                TauriSubTemplate::React => "\x1b[38;2;255;215;0mTauri2 with React\x1b[0m",
-                TauriSubTemplate::Solid => "\x1b[38;2;255;215;0mTauri2 with Solid\x1b[0m",
-            },
-            Template::Tauri(Some(sub_template)) => match sub_template {
-                TauriSubTemplate::Next => "\x1b[38;2;255;215;0mTauri with Next\x1b[0m",
-                TauriSubTemplate::React => "\x1b[38;2;255;215;0mTauri with React\x1b[0m",
-                TauriSubTemplate::Solid => "\x1b[38;2;255;215;0mTauri with Solid\x1b[0m",
-            },
-            Template::Electron(None) => {
-                "\x1b[38;2;255;215;0mElectron - (https://www.electronjs.org/)\x1b[0m"
+            Template::Janext => "\x1b[33mJanext https://www.janext.netlify.app/\x1b[0m",
+            Template::Janudocs(None) => {
+                "\x1b[38;2;255;215;0mJanudocs - (https://www.janudocs.netlify.app/)\x1b[0m"
             }
-            Template::Electron(Some(sub_template)) => match sub_template {
-                ElectronSubTemplate::Next => "\x1b[38;2;255;215;0mElectron with Next\x1b[0m",
-                ElectronSubTemplate::React => "\x1b[38;2;255;215;0mElectron with React\x1b[0m",
-                ElectronSubTemplate::Solid => "\x1b[38;2;255;215;0mElectron with Solid\x1b[0m",
+            Template::Janudocs(Some(sub_template)) => match sub_template {
+                JanudocsSubTemplate::React => "\x1b[38;2;255;215;0mJanudocs with React\x1b[0m",
+                JanudocsSubTemplate::Solid => "\x1b[38;2;255;215;0mJanudocs with Solid\x1b[0m",
             },
         }
     }
 }
 
 impl<'a> Template {
-    pub(crate) const ALL_TOP_LEVEL: &'a [Template] = &[
-        Template::Next,
-        Template::React,
-        Template::Solid,
-        Template::Tauri2(None),
-        Template::Tauri(None),
-        Template::Electron(None),
-    ];
+    pub(crate) const ALL_TOP_LEVEL: &'a [Template] = &[Template::Janext, Template::Janudocs(None)];
 
     fn transform_to_pascal_case(s: String) -> String {
         let mut result = String::new();
@@ -312,17 +221,9 @@ impl<'a> Template {
         };
 
         let current_template_name = match self {
-            Template::Tauri2(None) => "tauri2".to_string(),
-            Template::Tauri2(Some(sub_template)) => {
-                format!("tauri2/{}", sub_template.to_simple_string())
-            }
-            Template::Tauri(None) => "tauri".to_string(),
-            Template::Tauri(Some(sub_template)) => {
-                format!("tauri/{}", sub_template.to_simple_string())
-            }
-            Template::Electron(None) => "electron".to_string(),
-            Template::Electron(Some(sub_template)) => {
-                format!("electron/{}", sub_template.to_simple_string())
+            Template::Janudocs(None) => "janudocs".to_string(),
+            Template::Janudocs(Some(sub_template)) => {
+                format!("janudocs/{}", sub_template.to_simple_string())
             }
             _ => self.to_string(),
         };
@@ -349,23 +250,11 @@ where
 {
     let type_id = TypeId::of::<T>();
 
-    if type_id == TypeId::of::<ElectronSubTemplate>() {
-        let electron_template: &ElectronSubTemplate = unsafe { transmute(template) };
-        match electron_template {
-            &ElectronSubTemplate::Next => write!(f, "\x1b[33mNext\x1b[0m"),
-
-            &ElectronSubTemplate::React => write!(f, "\x1b[36mReact - (https://react.dev/)\x1b[0m"),
-            &ElectronSubTemplate::Solid => write!(
-                f,
-                "\x1b[38;2;68;206;246mSolid - (https://solidjs.com/)\x1b[0m"
-            ),
-        }
-    } else if type_id == TypeId::of::<TauriSubTemplate>() {
-        let tauri_template: &TauriSubTemplate = unsafe { transmute(template) };
-        match tauri_template {
-            &TauriSubTemplate::Next => write!(f, "\x1b[33mNext\x1b[0m"),
-            &TauriSubTemplate::React => write!(f, "\x1b[36mReact - (https://react.dev/)\x1b[0m"),
-            &TauriSubTemplate::Solid => write!(
+    if type_id == TypeId::of::<JanudocsSubTemplate>() {
+        let janudocs_template: &JanudocsSubTemplate = unsafe { transmute(template) };
+        match janudocs_template {
+            &JanudocsSubTemplate::React => write!(f, "\x1b[36mReact - (https://react.dev/)\x1b[0m"),
+            &JanudocsSubTemplate::Solid => write!(
                 f,
                 "\x1b[38;2;68;206;246mSolid - (https://solidjs.com/)\x1b[0m"
             ),
