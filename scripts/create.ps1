@@ -47,11 +47,11 @@ git clone --depth=1 $repoUrl $tempDir
 
 # Step 5: Determine template source path
 if ($mainTemplate -eq "Janext") {
-    $templateSrc = Join-Path $tempDir "templates\Janext"
+    $templateSrc = Join-Path $tempDir "templates\janext"
     $destName = "janext"
 } else {
-    $templateSrc = Join-Path $tempDir "templates\Janudocs\$subTemplate"
-    $sharedSrc = Join-Path $tempDir "templates\Janudocs\shared"
+    $templateSrc = Join-Path $tempDir "templates\janudocs\$subTemplate"
+    $sharedSrc = Join-Path $tempDir "templates\janudocs\shared"
     $destName = "janudocs-$subTemplate"
 }
 
