@@ -1,0 +1,12 @@
+{
+	"name": "@janustack/create-janustack-android-arm-eabi",
+	"version": "0.0.0",
+	"os": ["android"],
+	"cpu": ["arm"],
+	"main": "create-janustack.android-arm-eabi.node",
+	"files": ["create-janustack.android-arm-eabi.node"],
+	"license": "MIT",
+	"engines": {
+		"node": ">= 10"
+	}
+}

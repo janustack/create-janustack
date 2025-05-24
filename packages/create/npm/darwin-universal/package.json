@@ -1,0 +1,11 @@
+{
+	"name": "@janustack/create-janustack-darwin-universal",
+	"version": "0.0.0",
+	"os": ["darwin"],
+	"main": "create-janustack.darwin-universal.node",
+	"files": ["create-janustack.darwin-universal.node"],
+	"license": "MIT",
+	"engines": {
+		"node": ">= 10"
+	}
+}

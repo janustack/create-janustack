@@ -1,7 +1,7 @@
 {
 	"name": "create-janustack",
-	"author": "Andrew Christian Young",
 	"description": "",
+	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"private": "true",
 	"scripts": {
 		"check": "biome check --write .",
@@ -10,16 +10,12 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@moonrepo/cli": "^1.36.0",
-		"@types/bun": "^1.2.13",
+		"@moonrepo/cli": "^1.36.1",
+		"@types/bun": "^1.2.14",
 		"typescript": "^5.8.3"
 	},
-	"trustedDependencies": [
-		"@moonrepo/cli"
-	],
+	"trustedDependencies": ["@moonrepo/cli"],
 	"workspaces": {
-		"packages": [
-			"packages/*"
-		]
+		"packages": ["packages/*"]
 	}
 }
