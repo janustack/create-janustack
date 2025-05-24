@@ -1,9 +1,5 @@
-#![deny(clippy::all)]
-
-#[macro_use]
-extern crate napi_derive;
-
-#[napi]
-pub fn sum(a: i32, b: i32) -> i32 {
-  a + b
+#[allow(unused)]
+#[napi_derive::napi]
+fn run(args: Vec<String>, bin_name: Option<String>, pkg_manager: Option<String>) {
+    create_janustack::run(args, bin_name, pkg_manager);
 }

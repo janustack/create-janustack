@@ -4,7 +4,7 @@
   "author": "Andrew Christian Young (https://andrewcwhy.me/)",
   "version": "0.1.0",
   "bin": {
-    "create-janustack": "bin/index.js"
+    "create-janustack": "create-janustack.js"
   },
   "homepage": "https://github.com/janustack/create-janustack/#readme",
   "keywords": [

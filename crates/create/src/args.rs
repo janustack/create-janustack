@@ -3,7 +3,7 @@ use clap::{ArgAction, Parser};
 
 #[derive(Parser, Debug)]
 #[command(
-  name = "create-farm",
+  name = "create-janustack",
   about,
   long_about = None,
   version,
@@ -22,9 +22,9 @@ pub struct Args {
 impl Default for Args {
   fn default() -> Self {
     Self {
-      project_name: Some("farm-project".to_string()),
-      manager: Some(PackageManager::Npm),
-      template: Some(Template::Vanilla),
+      project_name: Some("janustack-project".to_string()),
+      manager: Some(PackageManager::Bun),
+      template: Some(Template::React),
       force: false,
     }
   }
