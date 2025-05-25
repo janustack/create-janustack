@@ -22,7 +22,7 @@ if (binStem.match(/(nodejs|node|bun)-*([0-9]*)*$/g)) {
 				manager = "npm";
 				break;
 
-			// Yarn, pnpm, and Bun have the same stem name as their bin.
+			// Bun and pnpm have the same stem name as their bin.
 			// We assume all unknown package managers do as well.
 			default:
 				manager = managerStem;

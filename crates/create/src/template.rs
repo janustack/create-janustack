@@ -109,7 +109,7 @@ impl FromStr for Template {
 impl Displayable for Template {
     fn display_text(&self) -> &'static str {
         match self {
-            Template::Janext => "\x1b[33mJanext https://www.janext.netlify.app/\x1b[0m",
+            Template::Janext => "\x1b[33mJanext - (https://www.janext.netlify.app/)\x1b[0m",
             Template::Janudocs(None) => {
                 "\x1b[38;2;255;215;0mJanudocs - (https://www.janudocs.netlify.app/)\x1b[0m"
             }
@@ -239,7 +239,7 @@ impl<'a> Template {
             write_file(&file, template_data.clone(), skip_count)?;
         }
 
-        handle_brand_text("\n ✔️ Template copied Successfully! \n");
+        handle_brand_text("\nProject template successfully scaffolded!\n");
         Ok(())
     }
 }
@@ -253,10 +253,10 @@ where
     if type_id == TypeId::of::<JanudocsSubTemplate>() {
         let janudocs_template: &JanudocsSubTemplate = unsafe { transmute(template) };
         match janudocs_template {
-            &JanudocsSubTemplate::React => write!(f, "\x1b[36mReact - (https://react.dev/)\x1b[0m"),
+            &JanudocsSubTemplate::React => write!(f, "\x1b[36mReact\x1b[0m"),
             &JanudocsSubTemplate::Solid => write!(
                 f,
-                "\x1b[38;2;68;206;246mSolid - (https://solidjs.com/)\x1b[0m"
+                "\x1b[38;2;68;206;246mSolid\x1b[0m"
             ),
         }
     } else {

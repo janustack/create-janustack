@@ -42,7 +42,7 @@ where
             .chain(args.into_iter().map(Into::into)),
     );
 
-    handle_brand_text("\n ⚡ Welcome To Janustack ! \n");
+    handle_brand_text("\nWelcome to Janustack\n");
     let defaults = args::Args::default();
     let args::Args {
         manager,
@@ -56,9 +56,13 @@ where
     let project_name = match project_name {
         Some(name) => to_valid_pkg_name(&name),
         None => loop {
-            let input = prompts::input("Project name", Some(default_project_name), false)?
-                .trim()
-                .to_string();
+            let input = prompts::input(
+                "Enter the name for your new project (relative to current directory)\n",
+                Some(default_project_name),
+                false,
+            )?
+            .trim()
+            .to_string();
             if !is_valid_pkg_name(&input) {
                 eprintln!(
                     "{BOLD}{RED}✘{RESET} Invalid project name: {BOLD}{YELLOW}{input}{RESET}, {}",
@@ -110,10 +114,8 @@ where
 
             match selected_template {
                 Template::Janudocs(None) => {
-                    let sub_templates = vec![
-                        JanudocsSubTemplate::React,
-                        JanudocsSubTemplate::Solid,
-                    ];
+                    let sub_templates =
+                        vec![JanudocsSubTemplate::React, JanudocsSubTemplate::Solid];
 
                     let sub_template =
                         prompts::select("Select an Janudocs template:", &sub_templates, Some(0))?
@@ -149,8 +151,6 @@ where
 
     // Render the template
     template.render(&target_dir, pkg_manager, &project_name, &project_name)?;
-
-    handle_brand_text("\n >  Initial Janustack Project created successfully ✨ ✨ \n");
 
     if target_dir != cwd {
         handle_brand_text(&format!(

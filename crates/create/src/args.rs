@@ -9,23 +9,27 @@ use clap::{ArgAction, Parser};
   version,
 )]
 pub struct Args {
-  #[arg(help = "Project name")]
-  pub project_name: Option<String>,
-  #[arg(short, long, help = "Package manager to use")]
-  pub manager: Option<PackageManager>,
-  #[arg(short, long, help = "Project template to use")]
-  pub template: Option<Template>,
-  #[arg(short, long, help = "Force overwrite of existing files", action = ArgAction::SetTrue)]
-  pub force: bool,
+    #[arg(help = "Project name")]
+    pub project_name: Option<String>,
+      
+    #[arg(short, long, help = "Package manager to use")]
+    pub manager: Option<PackageManager>,
+
+    #[arg(short, long, help = "Project template to use")]
+    pub template: Option<Template>,
+
+    #[arg(short, long, help = "Force overwrite of existing files", action = ArgAction::SetTrue)]
+
+    pub force: bool,
 }
 
 impl Default for Args {
-  fn default() -> Self {
-    Self {
-      project_name: Some("janustack-project".to_string()),
-      manager: Some(PackageManager::Bun),
-      template: Some(Template::Janext),
-      force: false,
+    fn default() -> Self {
+        Self {
+            project_name: Some("janustack-project".to_string()),
+            manager: Some(PackageManager::Bun),
+            template: Some(Template::Janext),
+            force: false,
+        }
     }
-  }
 }

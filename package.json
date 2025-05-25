@@ -8,6 +8,9 @@
 		"format": "biome format --write .",
 		"lint": "biome lint --write ."
 	},
+	"dependencies": {
+		"taze": "^19.1.0"
+	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
 		"@moonrepo/cli": "^1.36.1",
