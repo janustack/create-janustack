@@ -7,10 +7,11 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": []
+		"ignore": ["**/dist/**", "**/node_modules/**", "**/routeTree.gen.ts"]
 	},
 	"formatter": {
 		"enabled": true,
+		"formatWithErrors": true,
 		"indentStyle": "tab"
 	},
 	"organizeImports": {

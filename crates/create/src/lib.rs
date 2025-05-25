@@ -152,9 +152,11 @@ where
     // Render the template
     template.render(&target_dir, pkg_manager, &project_name, &project_name)?;
 
+    handle_brand_text("\nNext steps:\n");
+
     if target_dir != cwd {
         handle_brand_text(&format!(
-            "    cd {} \n",
+            "1. cd {} \n",
             if project_name.contains(' ') {
                 format!("\"{project_name}\"")
             } else {
@@ -163,9 +165,15 @@ where
         ));
     }
     if let Some(cmd) = pkg_manager.install_cmd() {
-        handle_brand_text(&format!("    {cmd} \n"));
+        handle_brand_text(&format!("2. {cmd}\n"));
     }
-    handle_brand_text(&format!("    {} \n", get_run_cmd(&pkg_manager, &template)));
+    handle_brand_text(&format!("3. {}\n", get_run_cmd(&pkg_manager, &template)));
+    
+    handle_brand_text("\nUpdate all dependencies:\n");
+    handle_brand_text(&format!("{} pons -r\n", pkg_manager.update_cmd()));
+    
+    handle_brand_text("\nLike create-janustack? Give a star on GitHub:\n");
+    handle_brand_text(&format!("https://github.com/janustack/create-janustack"));
 
     Ok(())
 }

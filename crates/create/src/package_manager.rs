@@ -81,4 +81,12 @@ impl PackageManager {
             PackageManager::Pnpm => "pnpm dev",
         }
     }
+
+    pub const fn update_cmd(&self) -> &'static str {
+        match self {
+            PackageManager::Bun => "bunx",
+            PackageManager::Npm => "npx",
+            PackageManager::Pnpm => "pnpm exec",
+        }
+    }
 }
