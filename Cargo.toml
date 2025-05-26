@@ -6,4 +6,3 @@ resolver = "3"
 edition = "2024"
 homepage = "https://github.com/janustack"
 repository = "https://github.com/janustack/create-janustack"
-

@@ -1,6 +1,6 @@
 [package]
 name = "create-janustack"
-description = "Create Janustack CLI tool"
+description = "Rapidly scaffold out a new Janustack."
 edition.workspace = true
 homepage.workspace = true
 repository.workspace = true
