@@ -8,10 +8,10 @@ keywords=["cli", "janustack", "templates"]
 license.workspace = true
 readme.workspace = true
 repository.workspace = true
-version = "0.1.0"
+version = "0.1.1"
 
 [[bin]]
-name = "create_janustack"
+name = "cargo-create-janustack"
 path = "src/main.rs"
 
 [dependencies]
