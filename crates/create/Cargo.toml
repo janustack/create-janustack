@@ -11,7 +11,7 @@ repository.workspace = true
 version = "0.1.0"
 
 [[bin]]
-name = "create-janustack"
+name = "create_janustack"
 path = "src/main.rs"
 
 [dependencies]
