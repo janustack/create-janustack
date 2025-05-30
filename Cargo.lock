@@ -208,7 +208,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "create_janustack"
+name = "create-janustack"
 version = "0.1.1"
 dependencies = [
  "anyhow",
@@ -218,10 +218,10 @@ dependencies = [
 ]
 
 [[package]]
-name = "create_janustack_node"
+name = "create-janustack-node"
 version = "0.1.0"
 dependencies = [
- "create_janustack",
+ "create-janustack",
  "napi",
  "napi-build",
  "napi-derive",
