@@ -15,8 +15,8 @@ bunx create-janustack
 ### Cargo
 
 ```bash
-cargo install create-janustack --locked
-cargo create-janustack
+cargo install create_janustack --locked
+cargo create_janustack
 ```
 
 ### Powershell
