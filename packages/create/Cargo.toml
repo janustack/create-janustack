@@ -1,5 +1,5 @@
 [package]
-name = "create_janustack-node"
+name = "create-janustack-node"
 description = ""
 edition.workspace = true
 homepage.workspace = true
@@ -12,9 +12,9 @@ crate-type = ["cdylib"]
 
 [dependencies]
 # Default enable napi4 feature, see https://nodejs.org/api/n-api.html#node-api-version-matrix
-napi = { version = "2.12.2", default-features = false, features = ["napi4"] }
-napi-derive = "2.12.2"
-create-janustack = { version = "0.1.0", path = "../../crates/create" }
+napi = { version = "2.16", default-features = false, features = ["napi4"] }
+napi-derive = "2.16"
+create-janustack = { path = "../../crates/create" }
 
 [build-dependencies]
 napi-build = "2.0.1"
