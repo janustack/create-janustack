@@ -1,8 +1,12 @@
 [package]
 name = "create-janustack"
-description = "Rapidly scaffold out a new Janustack."
+categories = ["cli"]
+description = "Rapidly scaffold out a new Janustack project."
 edition.workspace = true
 homepage.workspace = true
+keywords=["cli", "janustack", "templates"]
+license.workspace = true
+readme = "README.md"
 repository.workspace = true
 version = "0.1.0"
 

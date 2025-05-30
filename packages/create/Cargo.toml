@@ -1,8 +1,9 @@
 [package]
-name = "create-janustack-node"
+name = "create_janustack-node"
 description = ""
 edition.workspace = true
 homepage.workspace = true
+license.workspace = true
 repository.workspace = true
 version = "0.1.0"
 

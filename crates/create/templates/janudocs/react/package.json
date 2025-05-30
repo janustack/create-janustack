@@ -1,8 +1,13 @@
 {
-	"name": "",
+	"name": "janudocs",
 	"description": "",
 	"private": true,
 	"type": "module",
+	"scripts": {
+		"build": "tsc && vite build",
+		"dev": "vite",
+		"preview": "vite preview"
+	},
 	"dependencies": {
 		"@tailwindcss/vite": "^4.1.7",
 		"@tanstack/react-router": "^1.120.10",

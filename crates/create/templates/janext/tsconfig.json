@@ -1,6 +1,4 @@
 {
-	"extends": "@janfig/tsconfig/base",
-	"display": "",
 	"compilerOptions": {
 		"lib": ["DOM", "DOM.Iterable", "ESNext"],
 		"resolveJsonModule": true,

@@ -1,5 +1,4 @@
 {
-	"extends": "@janfig/tsconfig/solid",
 	"compilerOptions": {
 		"types": ["vite/client"],
 

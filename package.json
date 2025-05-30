@@ -1,23 +1,27 @@
 {
-	"name": "create-janustack",
-	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"devDependencies": {
-		"@biomejs/biome": "^1.9.4",
-		"@janfig/biome": "^0.1.0",
-		"@moonrepo/cli": "^1.36.1",
-		"@types/bun": "^1.2.14",
-		"typescript": "^5.8.3"
-	},
-	"description": "",
-	"private": "true",
-	"scripts": {
-		"cj": "bun packages/create/bin/index.js",
-		"check": "biome check --write .",
-		"format": "biome format --write .",
-		"lint": "biome lint --write ."
-	},
-	"trustedDependencies": ["@moonrepo/cli"],
-	"workspaces": {
-		"packages": ["packages/*"]
-	}
+  "name": "create-janustack",
+  "author": "Andrew Christian Young (https://andrewcwhy.me/)",
+  "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
+    "@janfig/biome": "^0.1.0",
+    "@moonrepo/cli": "^1.36.3",
+    "@types/bun": "^1.2.15",
+    "typescript": "^5.8.3"
+  },
+  "description": "",
+  "private": true,
+  "scripts": {
+    "cj": "bun packages/create/bin/index.js",
+    "check": "biome check --write .",
+    "format": "biome format --write .",
+    "lint": "biome lint --write ."
+  },
+  "trustedDependencies": [
+    "@moonrepo/cli"
+  ],
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  }
 }

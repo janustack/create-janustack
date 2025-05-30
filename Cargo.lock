@@ -221,7 +221,7 @@ dependencies = [
 ]
 
 [[package]]
-name = "create-janustack-node"
+name = "create_janustack-node"
 version = "0.1.0"
 dependencies = [
  "create-janustack",
