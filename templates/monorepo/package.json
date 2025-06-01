@@ -1,0 +1,23 @@
+{
+	"name": "",
+	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
+	"description": "",
+	"license": "MIT",
+	"private": true,
+	"scripts": {
+		"check": "biome check --write .",
+		"format": "biome format --write .",
+		"lint": "biome lint --write ."
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@moonrepo/cli": "^1.35.6",
+		"@types/bun": "^1.2.13",
+		"typescript": "^5.8.3"
+	},
+	"trustedDependencies": [
+		"@moonrepo/cli"
+	],
+	"workspaces": {
+	}
+}

@@ -1,8 +1,10 @@
 # https://moonrepo.dev/docs/config/template
 $schema: '../../.moon/cache/schemas/template.json'
 
-title: 'Title'
-description: 'Description of the template.'
+id: 'cargo-crate'
+title: 'Cargo Crate'
+description: 'Scaffolds the initial structure for an cargo crate.'
+destination: '/crates/[name]'
 variables:
   name:
     type: 'string'

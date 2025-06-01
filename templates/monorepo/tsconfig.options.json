@@ -20,6 +20,6 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"strict": true,
-		"allowJs": true
+		"allowJs": true,
 	}
 }
