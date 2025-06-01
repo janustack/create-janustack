@@ -9,10 +9,10 @@ use crate::{
     utils::colors::*,
 };
 
+pub mod utils;
 mod args;
 mod package_manager;
 mod template;
-pub mod utils;
 
 pub fn run<I, A>(args: I, bin_name: Option<String>, detected_manager: Option<String>)
 where

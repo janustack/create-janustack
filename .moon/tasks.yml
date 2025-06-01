@@ -1,7 +1,3 @@
-fileGroups:
-  configs:
-    - '*.{json, config.ts}'
-
 tasks:
   check:
     command: 'biome check --write .'
