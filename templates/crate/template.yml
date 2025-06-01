@@ -4,7 +4,7 @@ $schema: '../../.moon/cache/schemas/template.json'
 id: 'cargo-crate'
 title: 'Cargo Crate'
 description: 'Scaffolds the initial structure for an cargo crate.'
-destination: '/crates/[name]'
+destination: '/crates'
 variables:
   name:
     type: 'string'
