@@ -9,7 +9,7 @@ To get started using `create-janustack` run of the below commands in the folder 
 ### Bun
 
 ```bash
-bunx create-janustack
+bun create janustack
 ```
 
 ### Cargo

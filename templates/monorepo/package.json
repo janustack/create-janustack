@@ -19,5 +19,8 @@
 		"@moonrepo/cli"
 	],
 	"workspaces": {
+		"packages": [
+			"packages/*"
+		]
 	}
 }

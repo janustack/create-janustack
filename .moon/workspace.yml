@@ -3,7 +3,7 @@ $schema: 'https://moonrepo.dev/schemas/workspace.json'
 
 generator:
   templates:
-    - 'git://github.com/create-janustack/templates#main'
+    - 'git://github.com/janustack/create-janustack/templates#main'
 
 projects:
   - 'packages/*'

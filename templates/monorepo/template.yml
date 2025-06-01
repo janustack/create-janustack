@@ -1,11 +1,11 @@
 # https://moonrepo.dev/docs/config/template
-$schema: '../../.moon/cache/schemas/template.json'
+$schema: "../../.moon/cache/schemas/template.json"
 
-title: 'Title'
-description: 'Description of the template.'
+title: "Monorepo"
+description: "Scaffolds the initial structure for a monorepo."
 variables:
   name:
-    type: 'string'
-    default: ''
+    type: "string"
+    default: ""
     required: true
-    prompt: 'Package name?'
+    prompt: "Package name?"
