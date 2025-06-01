@@ -1,0 +1,12 @@
+tasks:
+  check:
+    command: 'biome check --write .'
+    description: 'Checks the codebase for errors.'
+
+  format:
+    command: 'biome format --write .'
+    description: 'Formats the codebase.'
+
+  lint:
+    command: 'biome lint --write .'
+    description: 'Lints the codebase.'

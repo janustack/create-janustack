@@ -1,5 +1,5 @@
-language: 'rust'
-type: 'application'
+language: rust
+type: scaffolding
 
 toolchain:
   default: bun

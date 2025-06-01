@@ -1,0 +1,19 @@
+{
+    "name": "",
+    "description": "",
+    "author": "",
+    "version": "0.1.0",
+    "license": "MIT",
+    "type": "module",
+    "files": [],
+    "homepage": "",
+    "keywords": [],
+    "repository": {
+        "type": "git",
+        "url": "",
+        "directory": "packages/"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
