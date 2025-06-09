@@ -16,7 +16,7 @@
 		"tailwindcss": "^4.1.7"
 	},
 	"devDependencies": {
-		"@janfig/tsconfig": "^0.1.0",
+		"@janfig/tsconfig": "^0.1.1",
 		"@types/react": "^19.1.5",
 		"@types/react-dom": "^19.1.5",
 		"typescript": "^5.8.3",

@@ -1,7 +1,7 @@
 {
-	"name": "",
-	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"description": "",
+	"name": "janustack-monorepo-template",
+	"author": "",
+	"description": "A monorepo template for JanusStack projects using Moonrepo.",
 	"license": "MIT",
 	"private": true,
 	"scripts": {
