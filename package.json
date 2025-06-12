@@ -1,14 +1,15 @@
 {
   "name": "create-janustack",
+  "description": "Monorepo for create-janustack.",
   "author": "Andrew Christian Young (https://andrewcwhy.me/)",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
     "@janfig/biome": "^0.1.0",
+    "@janfig/tsconfig": "^0.1.1",
     "@moonrepo/cli": "^1.37.1",
-    "@types/bun": "^1.2.15",
+    "@types/bun": "^1.2.16",
     "typescript": "^5.8.3"
   },
-  "description": "",
   "private": true,
   "scripts": {
     "cj": "bun packages/create/bin/index.js",

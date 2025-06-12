@@ -1,5 +1,4 @@
 {
-	"$schema": "https://json.schemastore.org/tsconfig",
 	"extends": "@janfig/tsconfig/solid",
 	"compilerOptions": {
 		"types": ["vite/client"],
