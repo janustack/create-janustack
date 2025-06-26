@@ -3,6 +3,7 @@ $schema: https://moonrepo.dev/schemas/tasks.json
 
 fileGroups:
   vite:
+    - src/**/*
     - vite.config.*
 
 tasks:
@@ -17,11 +18,12 @@ tasks:
   dev:
     description: Start the development server.
     command: vite dev
-    preset: server
 
   preview:
     description: Serve the production build of the application.
     command: vite preview
     deps:
       - build
+    inputs:
+      - dist
     preset: server

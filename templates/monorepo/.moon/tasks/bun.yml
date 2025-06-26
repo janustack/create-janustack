@@ -3,7 +3,8 @@ $schema: https://moonrepo.dev/schemas/tasks.json
 
 fileGroups:
   configs:
-    - "*.{config.*,json,toml,yml}"
+    - "*.config.{js,ts}"
+    - "*.{json,jsonc}"
 
 tasks:
   check:

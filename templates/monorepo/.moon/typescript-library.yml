@@ -1,5 +1,0 @@
-# https://moonrepo.dev/docs/config/projects
-$schema: https://moonrepo.dev/schemas/project.json
-
-language: typescript
-type: library
