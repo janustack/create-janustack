@@ -1,5 +1,5 @@
 # https://moonrepo.dev/docs/config/template
-$schema: '../../.moon/cache/schemas/template.json'
+$schema: 'https://moonrepo.dev/schemas/template.json'
 
 id: 'cargo-crate'
 title: 'Cargo Crate'
