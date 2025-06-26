@@ -3,11 +3,10 @@ $schema: 'https://moonrepo.dev/schemas/template.json'
 
 id: 'cargo-crate'
 title: 'Cargo Crate'
-description: 'Scaffolds the initial structure for an cargo crate.'
-destination: '/crates'
+description: 'Scaffolds the initial structure for a cargo crate.'
 variables:
   name:
     type: 'string'
     default: ''
     required: true
-    prompt: 'Package name?'
+    prompt: 'Crate name?'

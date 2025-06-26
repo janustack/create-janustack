@@ -1,5 +1,4 @@
-import { resolve } from "node:path";
-
+import tsconfigPaths from "@plugwalk/vite-tsconfig-paths";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
 import tailwindCSS from "@tailwindcss/vite";
 import react from "@vitejs/plugin-react";
@@ -11,12 +10,8 @@ export default defineConfig({
 		tanstackRouter({ target: "react", autoCodeSplitting: true }),
 		react(),
 		tailwindCSS(),
+		tsconfigPaths()
 	],
-	resolve: {
-		alias: {
-			"@": resolve(__dirname, "./src"),
-		},
-	},
 	server: {
 		port: 9705,
 	},
