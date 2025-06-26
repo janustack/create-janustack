@@ -1,13 +1,13 @@
 # https://moonrepo.dev/docs/config/workspace
-$schema: 'https://moonrepo.dev/schemas/workspace.json'
+$schema: https://moonrepo.dev/schemas/workspace.json
 
 generator:
   templates:
-    - 'git://github.com/janustack/create-janustack/templates#main'
+    - "git://github.com/janustack/create-janustack/templates#main"
 
 projects:
-  - 'packages/*'
+  - "packages/*"
 
 vcs:
-  manager: 'git'
-  defaultBranch: 'main'
+  manager: "git"
+  defaultBranch: "main"

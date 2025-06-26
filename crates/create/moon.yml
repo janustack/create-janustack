@@ -1,1 +1,3 @@
 language: rust
+
+tags: ['cargo', 'crate', 'rust']
