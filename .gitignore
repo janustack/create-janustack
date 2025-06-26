@@ -1,31 +1,15 @@
-# Build output
-**/dist/
-target
-
-# Caches
+# Artifacts
 *.tsbuildinfo
 
+# Build output
+dist/
+target/
+
 # Code coverage
-coverage
-*.lcov
+coverage/
 
-# Dependencies (bun install)
-node_modules
-
-# Editor directories and files
-.vscode/*
-!.vscode/extensions.json
-
-# Finder (MacOS) folder config
-.DS_Store
-
-# IntelliJ based IDEs
-.idea
-
-# Logs
-logs
-*.log
+# Dependencies
+node_modules/
 
 # moon
 .moon/cache
-.moon/docker

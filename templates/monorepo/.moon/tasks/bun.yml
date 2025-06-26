@@ -5,6 +5,9 @@ fileGroups:
   configs:
     - "*.config.{js,ts}"
     - "*.{json,jsonc}"
+  tests:
+    - tests/**/*
+    - "*.test.{js,jsx,ts,tsx}"
 
 tasks:
   check:
