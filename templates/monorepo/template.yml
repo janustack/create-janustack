@@ -1,5 +1,5 @@
 # https://moonrepo.dev/docs/config/template
-$schema: 'https://moonrepo.dev/schemas/template.json'
+$schema: https://moonrepo.dev/schemas/template.json
 
 title: "Monorepo"
 description: "Scaffolds the initial structure for a monorepo."

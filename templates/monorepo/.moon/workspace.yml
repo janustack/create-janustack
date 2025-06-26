@@ -6,8 +6,7 @@ generator:
     - "git://github.com/janustack/create-janustack/templates#main"
 
 projects:
-  - "packages/*"
+  - packages/*
 
 vcs:
-  manager: "git"
-  defaultBranch: "main"
+  defaultBranch: main
