@@ -2,9 +2,15 @@
 	"name": "create-janustack-linux-arm-musleabihf",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.0.0",
-	"os": ["linux"],
-	"cpu": ["arm"],
+	"os": [
+		"linux"
+	],
+	"cpu": [
+		"arm"
+	],
 	"main": "create-janustack.linux-arm-musleabihf.node",
-	"files": ["create-janustack.linux-arm-musleabihf.node"],
+	"files": [
+		"create-janustack.linux-arm-musleabihf.node"
+	],
 	"license": "MIT"
 }

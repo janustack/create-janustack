@@ -3,6 +3,7 @@ $schema: https://moonrepo.dev/schemas/tasks.json
 
 fileGroups:
   vite:
+    - public/**/*
     - src/**/*
     - vite.config.*
 

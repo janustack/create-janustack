@@ -2,9 +2,15 @@
 	"name": "create-janustack-win32-ia32-msvc",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.0.0",
-	"os": ["win32"],
-	"cpu": ["ia32"],
+	"os": [
+		"win32"
+	],
+	"cpu": [
+		"ia32"
+	],
 	"main": "create-janustack.win32-ia32-msvc.node",
-	"files": ["create-janustack.win32-ia32-msvc.node"],
+	"files": [
+		"create-janustack.win32-ia32-msvc.node"
+	],
 	"license": "MIT"
 }

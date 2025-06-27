@@ -3,9 +3,15 @@
 	"description": "",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.0.0",
-	"os": ["android"],
-	"cpu": ["arm64"],
+	"os": [
+		"android"
+	],
+	"cpu": [
+		"arm64"
+	],
 	"main": "create-janustack.android-arm64.node",
-	"files": ["create-janustack.android-arm64.node"],
+	"files": [
+		"create-janustack.android-arm64.node"
+	],
 	"license": "MIT"
 }

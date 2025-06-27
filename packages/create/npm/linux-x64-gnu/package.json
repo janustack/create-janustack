@@ -2,10 +2,18 @@
 	"name": "create-janustack-linux-x64-gnu",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.0.0",
-	"os": ["linux"],
-	"cpu": ["x64"],
+	"os": [
+		"linux"
+	],
+	"cpu": [
+		"x64"
+	],
 	"main": "create-janustack.linux-x64-gnu.node",
-	"files": ["create-janustack.linux-x64-gnu.node"],
+	"files": [
+		"create-janustack.linux-x64-gnu.node"
+	],
 	"license": "MIT",
-	"libc": ["glibc"]
+	"libc": [
+		"glibc"
+	]
 }

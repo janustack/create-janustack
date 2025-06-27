@@ -2,10 +2,18 @@
 	"name": "create-janustack-linux-arm64-musl",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.0.0",
-	"os": ["linux"],
-	"cpu": ["arm64"],
+	"os": [
+		"linux"
+	],
+	"cpu": [
+		"arm64"
+	],
 	"main": "create-janustack.linux-arm64-musl.node",
-	"files": ["create-janustack.linux-arm64-musl.node"],
+	"files": [
+		"create-janustack.linux-arm64-musl.node"
+	],
 	"license": "MIT",
-	"libc": ["musl"]
+	"libc": [
+		"musl"
+	]
 }
