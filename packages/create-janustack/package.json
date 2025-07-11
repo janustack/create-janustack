@@ -1,0 +1,58 @@
+{
+	"name": "create-janustack",
+	"description": "Rapidly create a new Janustack project.",
+	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
+	"version": "0.1.0",
+	"bin": {
+		"create-janustack": "bin/create-janustack.js"
+	},
+	"homepage": "https://github.com/janustack/create-janustack/#readme",
+	"files": [
+		"bin/create-janustack.js",
+		"index.js",
+		"index.d.ts"
+	],
+	"keywords": [
+		"cli",
+		"create-janustack"
+	],
+	"license": "MIT",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janustack/create-janustack.git",
+		"directory": "packages/create"
+	},
+	"main": "index.js",
+	"types": "index.d.ts",
+	"napi": {
+		"name": "create-janustack",
+		"triples": {
+			"additional": [
+				"aarch64-apple-darwin",
+				"aarch64-linux-android",
+				"aarch64-unknown-linux-gnu",
+				"aarch64-unknown-linux-musl",
+				"aarch64-pc-windows-msvc",
+				"armv7-unknown-linux-gnueabihf",
+				"armv7-unknown-linux-musleabihf",
+				"x86_64-unknown-linux-musl",
+				"x86_64-unknown-freebsd",
+				"i686-pc-windows-msvc",
+				"armv7-linux-androideabi",
+				"universal-apple-darwin",
+				"riscv64gc-unknown-linux-gnu"
+			]
+		}
+	},
+	"devDependencies": {
+		"@napi-rs/cli": "^2.18.4"
+	},
+	"scripts": {
+		"artifacts": "napi artifacts",
+		"build": "napi build --platform --release",
+		"build:debug": "napi build --platform",
+		"prepublishOnly": "napi prepublish -t npm",
+		"universal": "napi universal",
+		"version": "napi version"
+	}
+}

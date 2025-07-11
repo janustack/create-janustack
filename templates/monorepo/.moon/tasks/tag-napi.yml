@@ -1,0 +1,30 @@
+# https://moonrepo.dev/docs/config/tasks
+$schema: https://moonrepo.dev/schemas/tasks.json
+
+fileGroups:
+  vite:
+    - public/**/*
+    - src/**/*
+    - vite.config.*
+
+tasks:
+  artifacts:
+    description: This command is usually used in the publish step, before the npm publish command and after the Download artifacts step.
+    command: napi artifacts
+    inputs:
+      - "@group(vite)"
+    outputs:
+      - dist
+
+  build:
+    description: Start the development server.
+    command: vite dev
+
+  build:d:
+    description: Serve the production build of the application.
+    command: vite preview
+    deps:
+      - build
+    inputs:
+      - dist
+    preset: server

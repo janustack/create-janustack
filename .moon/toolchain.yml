@@ -1,4 +1,1 @@
 extends: https://raw.githubusercontent.com/janustack/create-janustack/refs/heads/main/templates/monorepo/.moon/toolchain.yml
-
-# Enable Rust
-unstable_rust: {}
