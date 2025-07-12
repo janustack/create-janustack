@@ -52,46 +52,38 @@ jobs:
             #---- Docker builds for Linux targets
           - host: ubuntu-latest
             target: aarch64-unknown-linux-musl
-            docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine
+            docker: ghcr.io/janustack/create-janustack/nodejs-rust:lts-alpine
             build: |
               set -e
               apk add curl unzip
               rustup target add aarch64-unknown-linux-musl
-              curl -fsSL https://bun.com/install | bash
-              export PATH="/root/.bun/bin:$PATH"
               bun install
               bun run build -- --target aarch64-unknown-linux-musl
 
           - host: ubuntu-latest
             target: aarch64-unknown-linux-gnu
-            docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian-aarch64
+            docker: ghcr.io/janustack/create-janustack/nodejs-rust:lts-debian-aarch64
             build: |
               set -e
               apt update && apt install -y curl unzip
-              curl -fsSL https://bun.com/install | bash
-              export PATH="/root/.bun/bin:$PATH"
               bun install
               bun run build -- --target aarch64-unknown-linux-gnu
 
           - host: ubuntu-latest
             target: x86_64-unknown-linux-musl
-            docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine
+            docker: ghcr.io/janustack/create-janustack/nodejs-rust:lts-alpine
             build: |
               set -e
               apk add curl unzip
-              curl -fsSL https://bun.com/install | bash
-              export PATH="/root/.bun/bin:$PATH"
               bun install
               bun run build -- --target x86_64-unknown-linux-musl
 
           - host: ubuntu-latest
             target: x86_64-unknown-linux-gnu
-            docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-debian
+            docker: ghcr.io/janustack/create-janustack/nodejs-rust:lts-debian
             build: |
               set -e
               apt update && apt install -y curl unzip
-              curl -fsSL https://bun.com/install | bash
-              export PATH="/root/.bun/bin:$PATH"
               bun install
               bun run build -- --target x86_64-unknown-linux-gnu
 
