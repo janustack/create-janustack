@@ -1,4 +1,4 @@
-name: release
+name: ci
 
 env:
   DEBUG: napi:*
@@ -79,11 +79,18 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+          
       - name: Setup Node
         uses: actions/setup-node@v4
         if: ${{ !matrix.settings.docker }}
         with:
           node-version: latest
+
       - name: Install
         uses: dtolnay/rust-toolchain@stable
         if: ${{ !matrix.settings.docker }}
@@ -137,6 +144,7 @@ jobs:
           name: bindings-${{ matrix.settings.target }}
           path: ${{ env.APP_NAME }}.*.node
           if-no-files-found: error
+
   build-freebsd:
     runs-on: macos-13
     name: Build FreeBSD
@@ -184,6 +192,7 @@ jobs:
           name: bindings-freebsd
           path: ${{ env.APP_NAME }}.*.node
           if-no-files-found: error
+
   test-macOS-windows-binding:
     name: Test bindings on ${{ matrix.settings.target }} - node@${{ matrix.node }}
     needs:
@@ -200,23 +209,34 @@ jobs:
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+    
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           architecture: x64
+
       - name: Install dependencies
         run: bun install
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: bindings-${{ matrix.settings.target }}
           path: .
+
       - name: List packages
         run: ls -R .
         shell: bash
+
       - name: Test bindings
         run: bun test
+
   test-linux-x64-gnu-binding:
     name: Test bindings on Linux-x64-gnu - node@${{ matrix.node }}
     needs:
@@ -228,22 +248,33 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
+
       - name: Install dependencies
         run: bun install
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: bindings-x86_64-unknown-linux-gnu
           path: .
+
       - name: List packages
         run: ls -R .
         shell: bash
+
       - name: Test bindings
         run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-slim bun test
+
   test-linux-x64-musl-binding:
     name: Test bindings on x86_64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -255,6 +286,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -264,6 +301,7 @@ jobs:
         run: |
           bun config set supportedArchitectures.libc "musl"
           bun install
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
@@ -272,8 +310,10 @@ jobs:
       - name: List packages
         run: ls -R .
         shell: bash
+
       - name: Test bindings
         run: docker run --rm -v $(pwd):/build -w /build node:${{ matrix.node }}-alpine bun test
+
   test-linux-aarch64-gnu-binding:
     name: Test bindings on aarch64-unknown-linux-gnu - node@${{ matrix.node }}
     needs:
@@ -285,24 +325,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: bindings-aarch64-unknown-linux-gnu
           path: .
+
       - name: List packages
         run: ls -R .
         shell: bash
+
       - name: Install dependencies
         run: |
           bun config set supportedArchitectures.cpu "arm64"
           bun config set supportedArchitectures.libc "glibc"
           bun install
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
+
       - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -320,24 +371,35 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+  
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: bindings-aarch64-unknown-linux-musl
           path: .
+
       - name: List packages
         run: ls -R .
         shell: bash
+
       - name: Install dependencies
         run: |
           bun config set supportedArchitectures.cpu "arm64"
           bun config set supportedArchitectures.libc "musl"
           bun install
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
           platforms: arm64
+
       - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -346,6 +408,7 @@ jobs:
           run: |
             set -e
             bun test
+
   test-linux-arm-gnueabihf-binding:
     name: Test bindings on armv7-unknown-linux-gnueabihf - node@${{ matrix.node }}
     needs:
@@ -357,23 +420,34 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
       - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           name: bindings-armv7-unknown-linux-gnueabihf
           path: .
+
       - name: List packages
         run: ls -R .
         shell: bash
+
       - name: Install dependencies
         run: |
           bun config set supportedArchitectures.cpu "arm"
           bun install
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
         with:
           platforms: arm
+
       - run: docker run --rm --privileged multiarch/qemu-user-static --reset -p yes
+
       - name: Setup and run tests
         uses: addnab/docker-run-action@v3
         with:
@@ -391,24 +465,35 @@ jobs:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup node
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+    
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: latest
+
       - name: Install dependencies
         run: bun install
+
       - name: Download macOS x64 artifact
         uses: actions/download-artifact@v4
         with:
           name: bindings-x86_64-apple-darwin
           path: artifacts
+
       - name: Download macOS arm64 artifact
         uses: actions/download-artifact@v4
         with:
           name: bindings-aarch64-apple-darwin
           path: artifacts
+
       - name: Combine binaries
         run: bun universal
+
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
@@ -430,18 +515,28 @@ jobs:
       - universal-macOS
     steps:
       - uses: actions/checkout@v4
-      - name: Setup node
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+    
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: latest
+  
       - name: Install dependencies
         run: bun install
+
       - name: Download all artifacts
         uses: actions/download-artifact@v4
         with:
           path: artifacts
+
       - name: Move artifacts
         run: bun artifacts
+
       - name: List packages
         run: ls -R ./npm
         shell: bash
