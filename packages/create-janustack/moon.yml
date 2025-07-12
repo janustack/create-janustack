@@ -1,5 +1,14 @@
+# https://moonrepo.dev/docs/config/project
+$schema: https://moonrepo.dev/schemas/project.json
+
 language: javascript
 type: library
 
 tags:
   - napi
+
+id: cj
+
+project:
+  name: create-janustack
+  description: cj is an alias for create-janustack, a CLI tool for creating Janustack projects.

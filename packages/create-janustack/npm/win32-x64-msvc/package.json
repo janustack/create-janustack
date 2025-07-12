@@ -1,27 +1,27 @@
 {
-	"name": "@janustack/create-janustack-win32-x64-msvc",
-	"description": "Windows x64 (MSVC) binary distribution for Janustack’s CLI",
-	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"cpu": [
-		"x64"
-	],
-	"files": [
-		"create-janustack.win32-x64-msvc.node"
-	],
-	"keywords": [
-		"binary",
-		"cli",
-		"janustack",
-		"msvc",
-		"napi",
-		"win32",
-		"windows",
-		"x64"
-	],
-	"license": "MIT",
-	"main": "create-janustack.win32-x64-msvc.node",
-	"os": [
-		"win32"
-	],
-	"version": "0.0.0"
+  "name": "@janustack/create-janustack-win32-x64-msvc",
+  "description": "Windows x64 (MSVC) binary distribution for Janustack’s CLI",
+  "author": "Andrew Christian Young (https://andrewcwhy.me/)",
+  "cpu": [
+    "x64"
+  ],
+  "files": [
+    "create-janustack.win32-x64-msvc.node"
+  ],
+  "keywords": [
+    "binary",
+    "cli",
+    "janustack",
+    "msvc",
+    "napi",
+    "win32",
+    "windows",
+    "x64"
+  ],
+  "license": "MIT",
+  "main": "create-janustack.win32-x64-msvc.node",
+  "os": [
+    "win32"
+  ],
+  "version": "0.1.0"
 }

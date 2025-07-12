@@ -1,0 +1,11 @@
+fileGroups:
+  sources:
+    - crates/*/src/**/*
+    - crates/*/Cargo.toml
+    - Cargo.toml
+
+tasks:
+  build:
+    command: cargo build
+    inputs:
+      - "@globs(sources)"

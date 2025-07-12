@@ -1,32 +1,32 @@
 {
-	"name": "@janustack/create-janustack-win32-arm64-msvc",
-	"description": "Windows ARM64 (MSVC) binary distribution for Janustack’s CLI",
-	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"cpu": [
-		"arm64"
-	],
-	"files": [
-		"create-janustack.win32-arm64-msvc.node"
-	],
-	"keywords": [
-		"arm64",
-		"binary",
-		"cli",
-		"janustack",
-		"msvc",
-		"napi",
-		"win32",
-		"windows"
-	],
-	"license": "MIT",
-	"main": "create-janustack.win32-arm64-msvc.node",
-	"os": [
-		"win32"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/janustack/create-janustack.git",
-		"directory": "packages/create-janustack"
-	},
-	"version": "0.0.0"
+  "name": "@janustack/create-janustack-win32-arm64-msvc",
+  "description": "Windows ARM64 (MSVC) binary distribution for Janustack’s CLI",
+  "author": "Andrew Christian Young (https://andrewcwhy.me/)",
+  "cpu": [
+    "arm64"
+  ],
+  "files": [
+    "create-janustack.win32-arm64-msvc.node"
+  ],
+  "keywords": [
+    "arm64",
+    "binary",
+    "cli",
+    "janustack",
+    "msvc",
+    "napi",
+    "win32",
+    "windows"
+  ],
+  "license": "MIT",
+  "main": "create-janustack.win32-arm64-msvc.node",
+  "os": [
+    "win32"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/janustack/create-janustack.git",
+    "directory": "packages/create-janustack"
+  },
+  "version": "0.1.0"
 }

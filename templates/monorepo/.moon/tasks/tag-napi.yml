@@ -1,30 +1,32 @@
-# https://moonrepo.dev/docs/config/tasks
-$schema: https://moonrepo.dev/schemas/tasks.json
-
-fileGroups:
-  vite:
-    - public/**/*
-    - src/**/*
-    - vite.config.*
+# https://moonrepo.dev/docs/config/project
+$schema: https://moonrepo.dev/schemas/project.json
 
 tasks:
   artifacts:
-    description: This command is usually used in the publish step, before the npm publish command and after the Download artifacts step.
     command: napi artifacts
-    inputs:
-      - "@group(vite)"
-    outputs:
-      - dist
+    description: Generate artifacts for the package.
 
   build:
-    description: Start the development server.
-    command: vite dev
-
-  build:d:
-    description: Serve the production build of the application.
-    command: vite preview
-    deps:
-      - build
+    command: napi build --platform --release
+    description: Build the package for the specified platform and target.
     inputs:
-      - dist
-    preset: server
+    outputs:
+      - "*.node"
+
+  debug:
+    command: napi build --platform
+    description: Build the package for the specified platform in debug mode.
+    outputs:
+      - "*.node"
+
+  prepublishOnly:
+    command: napi prepublish -t npm
+    description: Run prepublish checks and prepare the package for publishing.
+
+  universal:
+    command: napi universal
+    description: Build the package for all platforms.
+
+  version:
+    command: napi version
+    description: Bump the package version.

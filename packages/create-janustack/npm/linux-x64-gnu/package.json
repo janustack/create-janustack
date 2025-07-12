@@ -1,34 +1,34 @@
 {
-	"name": "@janustack/create-janustack-linux-x64-gnu",
-	"description": "Linux x64 (glibc) binary distribution for Janustack’s CLI",
-	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"cpu": [
-		"x64"
-	],
-	"files": [
-		"create-janustack.linux-x64-gnu.node"
-	],
-	"keywords": [
-		"binary",
-		"cli",
-		"glibc",
-		"janustack",
-		"linux",
-		"napi",
-		"x64"
-	],
-	"license": "MIT",
-	"libc": [
-		"glibc"
-	],
-	"main": "create-janustack.linux-x64-gnu.node",
-	"os": [
-		"linux"
-	],
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/janustack/create-janustack.git",
-		"directory": "packages/create-janustack"
-	},
-	"version": "0.0.0"
+  "name": "@janustack/create-janustack-linux-x64-gnu",
+  "description": "Linux x64 (glibc) binary distribution for Janustack’s CLI",
+  "author": "Andrew Christian Young (https://andrewcwhy.me/)",
+  "cpu": [
+    "x64"
+  ],
+  "files": [
+    "create-janustack.linux-x64-gnu.node"
+  ],
+  "keywords": [
+    "binary",
+    "cli",
+    "glibc",
+    "janustack",
+    "linux",
+    "napi",
+    "x64"
+  ],
+  "license": "MIT",
+  "libc": [
+    "glibc"
+  ],
+  "main": "create-janustack.linux-x64-gnu.node",
+  "os": [
+    "linux"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/janustack/create-janustack.git",
+    "directory": "packages/create-janustack"
+  },
+  "version": "0.1.0"
 }
