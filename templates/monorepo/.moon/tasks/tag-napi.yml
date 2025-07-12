@@ -1,6 +1,15 @@
 # https://moonrepo.dev/docs/config/project
 $schema: https://moonrepo.dev/schemas/project.json
 
+fileGroups:
+  artifacts:
+    - "target/**/*"
+    - "*.node"
+  sources:
+    - "src/**/*"
+    - "index.*"
+    - "*.rs"
+
 tasks:
   artifacts:
     command: napi artifacts
@@ -10,14 +19,15 @@ tasks:
     command: napi build --platform --release
     description: Build the package for the specified platform and target.
     inputs:
+      - "@globs(sources)"
     outputs:
-      - "*.node"
+      - "@globs(artifacts)"
 
   debug:
     command: napi build --platform
     description: Build the package for the specified platform in debug mode.
     outputs:
-      - "*.node"
+      - "@globs(artifacts)"
 
   prepublishOnly:
     command: napi prepublish -t npm
@@ -30,3 +40,5 @@ tasks:
   version:
     command: napi version
     description: Bump the package version.
+    inputs:
+      - package.json
