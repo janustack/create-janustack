@@ -75,16 +75,15 @@ jobs:
               sudo apt-get update
               sudo apt-get install gcc-riscv64-linux-gnu -y
             build: bun build --target riscv64gc-unknown-linux-gnu
-    name: stable - ${{ matrix.settings.target }} - node@20
+    name: stable - ${{ matrix.settings.target }} - node@latest
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v4
-      - name: Setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
         if: ${{ !matrix.settings.docker }}
         with:
-          node-version: 20
-          cache: bun
+          node-version: latest
       - name: Install
         uses: dtolnay/rust-toolchain@stable
         if: ${{ !matrix.settings.docker }}
@@ -109,18 +108,17 @@ jobs:
         run: ${{ matrix.settings.setup }}
         if: ${{ matrix.settings.setup }}
         shell: bash
-      - name: Setup node x86
+      - name: Setup Node x86
         if: matrix.settings.target == 'i686-pc-windows-msvc'
         run: bun config set supportedArchitectures.cpu "ia32"
         shell: bash
       - name: Install dependencies
         run: bun install
-      - name: Setup node x86
+      - name: Setup Node x86
         uses: actions/setup-node@v4
         if: matrix.settings.target == 'i686-pc-windows-msvc'
         with:
-          node-version: 20
-          cache: bun
+          node-version: latest
           architecture: x86
       - name: Build in docker
         uses: addnab/docker-run-action@v3
@@ -198,17 +196,14 @@ jobs:
             target: x86_64-apple-darwin
           - host: windows-latest
             target: x86_64-pc-windows-msvc
-        node:
-          - '18'
-          - '20'
+        node: ['18', '20']
     runs-on: ${{ matrix.settings.host }}
     steps:
       - uses: actions/checkout@v4
-      - name: Setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          cache: bun
           architecture: x64
       - name: Install dependencies
         run: bun install
@@ -229,17 +224,14 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node:
-          - '18'
-          - '20'
+        node: ['18', '20']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
-          cache: bun
       - name: Install dependencies
         run: bun install
       - name: Download artifacts
@@ -259,13 +251,11 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node:
-          - '18'
-          - '20'
+        node: ['18', '20']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Setup node
+      - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
@@ -291,9 +281,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node:
-          - '18'
-          - '20'
+        node: ['18', '20']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -324,6 +312,7 @@ jobs:
             set -e
             bun test
             ls -la
+
   test-linux-aarch64-musl-binding:
     name: Test bindings on aarch64-unknown-linux-musl - node@${{ matrix.node }}
     needs:
@@ -364,9 +353,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node:
-          - '18'
-          - '20'
+        node: ['18', '20']
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -396,6 +383,7 @@ jobs:
             set -e
             bun test
             ls -la
+
   universal-macOS:
     name: Build universal macOS binary
     needs:
@@ -406,8 +394,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: bun
+          node-version: latest
       - name: Install dependencies
         run: bun install
       - name: Download macOS x64 artifact
@@ -428,6 +415,7 @@ jobs:
           name: bindings-universal-apple-darwin
           path: ${{ env.APP_NAME }}.*.node
           if-no-files-found: error
+
   publish:
     name: Publish
     runs-on: ubuntu-latest
@@ -445,8 +433,7 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
-          cache: bun
+          node-version: latest
       - name: Install dependencies
         run: bun install
       - name: Download all artifacts
