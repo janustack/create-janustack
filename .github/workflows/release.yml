@@ -146,7 +146,7 @@ jobs:
             -v ${{ github.workspace }}/.cargo/registry/cache:/usr/local/cargo/registry/cache
             -v ${{ github.workspace }}/.cargo/registry/index:/usr/local/cargo/registry/index
             -v ${{ github.workspace }}:/build
-            -w /build
+            -w /build/packages/create-janustack
           run: ${{ matrix.settings.build }}
 
       - name: Build on host
