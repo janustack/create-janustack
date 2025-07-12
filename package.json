@@ -1,12 +1,12 @@
 {
 	"name": "create-janustack",
-	"description": "Monorepo for create-janustack.",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"devDependencies": {
 		"@biomejs/biome": "^2.1.1",
 		"@moonrepo/cli": "^1.38.5",
 		"typescript": "^5.8.3"
 	},
+	"description": "Monorepo for create-janustack.",
 	"private": true,
 	"trustedDependencies": [
 		"@moonrepo/cli"
