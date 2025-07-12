@@ -1,8 +1,0 @@
-{
-	"extends": "./tsconfig.options.json",
-	"references": [
-		{
-			"path": "packages/create"
-		}
-	]
-}

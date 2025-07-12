@@ -1,16 +1,32 @@
 {
-	"name": "create-janustack-linux-arm-gnueabihf",
+	"name": "@janustack/create-janustack-linux-arm-gnueabihf",
+	"description": "Linux ARM (GNU EABI HF, glibc) binary distribution for Janustack’s CLI",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"version": "0.0.0",
-	"os": [
-		"linux"
-	],
 	"cpu": [
 		"arm"
 	],
-	"main": "create-janustack.linux-arm-gnueabihf.node",
 	"files": [
 		"create-janustack.linux-arm-gnueabihf.node"
 	],
-	"license": "MIT"
+	"keywords": [
+		"arm",
+		"binary",
+		"cli",
+		"glibc",
+		"gnueabihf",
+		"janustack",
+		"linux",
+		"napi"
+	],
+	"license": "MIT",
+	"main": "create-janustack.linux-arm-gnueabihf.node",
+	"os": [
+		"linux"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janustack/create-janustack.git",
+		"directory": "packages/create-janustack"
+	},
+	"version": "0.0.0"
 }

@@ -1,19 +1,34 @@
 {
-	"name": "create-janustack-linux-riscv64-gnu",
+	"name": "@janustack/create-janustack-linux-riscv64-gnu",
+	"description": "Linux RISC-V64 (glibc) binary distribution for Janustack’s CLI",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"version": "0.0.0",
-	"os": [
-		"linux"
-	],
 	"cpu": [
 		"riscv64"
 	],
-	"main": "create-janustack.linux-riscv64-gnu.node",
 	"files": [
 		"create-janustack.linux-riscv64-gnu.node"
+	],
+	"keywords": [
+		"binary",
+		"cli",
+		"glibc",
+		"janustack",
+		"linux",
+		"napi",
+		"riscv64"
 	],
 	"license": "MIT",
 	"libc": [
 		"glibc"
-	]
+	],
+	"main": "create-janustack.linux-riscv64-gnu.node",
+	"os": [
+		"linux"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janustack/create-janustack.git",
+		"directory": "packages/create-janustack"
+	},
+	"version": "0.0.0"
 }

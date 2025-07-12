@@ -1,5 +1,2 @@
-[run]
-# equivalent to `bun --bun` for all `bun run` commands
-bun = true
-# default on Windows
-shell = "bun"
+[install.scopes]
+"@janustack" = { token = "$JANUSTACK_NPM_TOKEN", url = "https://registry.npmjs.org/" }

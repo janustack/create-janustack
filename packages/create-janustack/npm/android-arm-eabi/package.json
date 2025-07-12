@@ -1,17 +1,31 @@
 {
-	"name": "create-janustack-android-arm-eabi",
-	"description": "armv7-linux-androideabi native binary for create-janustack CLI.",
+	"name": "@janustack/create-janustack-android-arm-eabi",
+	"description": "Android ARM (EABI) binary distribution for Janustack’s CLI",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"version": "0.0.0",
-	"os": [
-		"android"
-	],
 	"cpu": [
 		"arm"
 	],
-	"main": "create-janustack.android-arm-eabi.node",
 	"files": [
 		"create-janustack.android-arm-eabi.node"
 	],
-	"license": "MIT"
+	"keywords": [
+		"android",
+		"arm",
+		"binary",
+		"cli",
+		"eabi",
+		"janustack",
+		"napi"
+	],
+	"license": "MIT",
+	"main": "create-janustack.android-arm-eabi.node",
+	"os": [
+		"android"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janustack/create-janustack.git",
+		"directory": "packages/create-janustack"
+	},
+	"version": "0.0.0"
 }

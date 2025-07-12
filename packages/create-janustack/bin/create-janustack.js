@@ -3,7 +3,7 @@
 import { normalize, parse, relative } from "node:path";
 import { argv, cwd, env } from "node:process";
 
-import { run } from "../index.js"; 
+import { run } from "../index.js";
 
 const [bin, script, ...args] = argv;
 const binStem = parse(bin).name.toLowerCase();

@@ -1,5 +1,5 @@
 {
-	"name": "create-janustack",
+	"name": "@janustack/create-janustack",
 	"description": "Rapidly create a new Janustack project.",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"version": "0.1.0",
@@ -20,7 +20,7 @@
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/janustack/create-janustack.git",
-		"directory": "packages/create"
+		"directory": "packages/create-janustack"
 	},
 	"main": "index.js",
 	"types": "index.d.ts",

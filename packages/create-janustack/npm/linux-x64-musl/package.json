@@ -1,19 +1,34 @@
 {
-	"name": "create-janustack-linux-x64-musl",
+	"name": "@janustack/create-janustack-linux-x64-musl",
+	"description": "Linux x64 (musl) binary distribution for Janustack’s CLI",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"version": "0.0.0",
-	"os": [
-		"linux"
-	],
 	"cpu": [
 		"x64"
 	],
-	"main": "create-janustack.linux-x64-musl.node",
 	"files": [
 		"create-janustack.linux-x64-musl.node"
+	],
+	"keywords": [
+		"binary",
+		"cli",
+		"janustack",
+		"linux",
+		"musl",
+		"napi",
+		"x64"
 	],
 	"license": "MIT",
 	"libc": [
 		"musl"
-	]
+	],
+	"main": "create-janustack.linux-x64-musl.node",
+	"os": [
+		"linux"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janustack/create-janustack.git",
+		"directory": "packages/create-janustack"
+	},
+	"version": "0.0.0"
 }

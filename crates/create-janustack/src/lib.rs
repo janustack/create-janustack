@@ -9,10 +9,10 @@ use crate::{
     utils::colors::*,
 };
 
-pub mod utils;
 mod args;
 mod package_manager;
 mod template;
+pub mod utils;
 
 pub fn run<I, A>(args: I, bin_name: Option<String>, detected_manager: Option<String>)
 where
@@ -168,10 +168,10 @@ where
         handle_brand_text(&format!("2. {cmd}\n"));
     }
     handle_brand_text(&format!("3. {}\n", get_run_cmd(&pkg_manager, &template)));
-    
+
     handle_brand_text("\nUpdate all dependencies:\n");
     handle_brand_text(&format!("{} pons -r\n", pkg_manager.update_cmd()));
-    
+
     handle_brand_text("\nLike create-janustack? Give a star on GitHub:\n");
     handle_brand_text(&format!("https://github.com/janustack/create-janustack"));
 

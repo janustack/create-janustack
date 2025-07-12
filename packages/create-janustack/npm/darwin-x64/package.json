@@ -1,16 +1,32 @@
 {
-	"name": "create-janustack-darwin-x64",
+	"name": "@janustack/create-janustack-darwin-x64",
+	"description": "macOS x64 binary distribution for Janustack’s CLI",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"version": "0.0.0",
-	"os": [
-		"darwin"
-	],
 	"cpu": [
 		"x64"
 	],
-	"main": "create-janustack.darwin-x64.node",
 	"files": [
 		"create-janustack.darwin-x64.node"
 	],
-	"license": "MIT"
+	"homepage": "https://github.com/andrewcwhy/create-janustack#readme",
+	"keywords": [
+		"binary",
+		"cli",
+		"darwin",
+		"janustack",
+		"macos",
+		"napi",
+		"x64"
+	],
+	"license": "MIT",
+	"main": "create-janustack.darwin-x64.node",
+	"os": [
+		"darwin"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janustack/create-janustack.git",
+		"directory": "packages/create-janustack"
+	},
+	"version": "0.0.0"
 }

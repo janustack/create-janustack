@@ -4,9 +4,7 @@
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"devDependencies": {
 		"@biomejs/biome": "^2.1.1",
-		"@janfig/tsconfig": "^0.1.1",
 		"@moonrepo/cli": "^1.38.5",
-		"@types/bun": "^1.2.18",
 		"typescript": "^5.8.3"
 	},
 	"private": true,

@@ -5,14 +5,12 @@
       "name": "create-janustack",
       "devDependencies": {
         "@biomejs/biome": "^2.1.1",
-        "@janfig/tsconfig": "^0.1.1",
         "@moonrepo/cli": "^1.38.5",
-        "@types/bun": "^1.2.18",
         "typescript": "^5.8.3",
       },
     },
     "packages/create-janustack": {
-      "name": "create-janustack",
+      "name": "@janustack/create-janustack",
       "version": "0.1.0",
       "bin": {
         "create-janustack": "bin/create-janustack.js",
@@ -44,7 +42,7 @@
 
     "@biomejs/cli-win32-x64": ["@biomejs/cli-win32-x64@2.1.1", "", { "os": "win32", "cpu": "x64" }, "sha512-i2PKdn70kY++KEF/zkQFvQfX1e8SkA8hq4BgC+yE9dZqyLzB/XStY2MvwI3qswlRgnGpgncgqe0QYKVS1blksg=="],
 
-    "@janfig/tsconfig": ["@janfig/tsconfig@0.1.1", "", {}, "sha512-Upz1khSnzYLQW1O5/8d9sGcgCTbiKlPkBa7eix4rpBTMAGD2Fnwg98YvrL9CdPYc97LK/BWhOeggQ9rL+TKTZw=="],
+    "@janustack/create-janustack": ["@janustack/create-janustack@workspace:packages/create-janustack"],
 
     "@moonrepo/cli": ["@moonrepo/cli@1.38.5", "", { "dependencies": { "detect-libc": "^2.0.3" }, "optionalDependencies": { "@moonrepo/core-linux-arm64-gnu": "1.38.5", "@moonrepo/core-linux-arm64-musl": "1.38.5", "@moonrepo/core-linux-x64-gnu": "1.38.5", "@moonrepo/core-linux-x64-musl": "1.38.5", "@moonrepo/core-macos-arm64": "1.38.5", "@moonrepo/core-macos-x64": "1.38.5", "@moonrepo/core-windows-x64-msvc": "1.38.5" }, "bin": { "moon": "moon.js" } }, "sha512-lP7v48Zmtz/FT7er/C5K9kjQliqy+lpfoFQE4qQ/SkQz10gIILMzsGPqWlmVXI4EILNfWVoBWSxxbjdFkJL9Qw=="],
 
@@ -64,22 +62,8 @@
 
     "@napi-rs/cli": ["@napi-rs/cli@2.18.4", "", { "bin": { "napi": "scripts/index.js" } }, "sha512-SgJeA4df9DE2iAEpr3M2H0OKl/yjtg1BnRI5/JyowS71tUWhrfSu2LT0V3vlHET+g1hBVlrO60PmEXwUEKp8Mg=="],
 
-    "@types/bun": ["@types/bun@1.2.18", "", { "dependencies": { "bun-types": "1.2.18" } }, "sha512-Xf6RaWVheyemaThV0kUfaAUvCNokFr+bH8Jxp+tTZfx7dAPA8z9ePnP9S9+Vspzuxxx9JRAXhnyccRj3GyCMdQ=="],
-
-    "@types/node": ["@types/node@22.15.21", "", { "dependencies": { "undici-types": "~6.21.0" } }, "sha512-EV/37Td6c+MgKAbkcLG6vqZ2zEYHD7bvSrzqqs2RIhbA6w3x+Dqz8MZM3sP6kGTeLrdoOgKZe+Xja7tUB2DNkQ=="],
-
-    "@types/react": ["@types/react@19.1.8", "", { "dependencies": { "csstype": "^3.0.2" } }, "sha512-AwAfQ2Wa5bCx9WP8nZL2uMZWod7J7/JSplxbTmBQ5ms6QpqNYm672H0Vu9ZVKVngQ+ii4R/byguVEUZQyeg44g=="],
-
-    "bun-types": ["bun-types@1.2.18", "", { "dependencies": { "@types/node": "*" }, "peerDependencies": { "@types/react": "^19" } }, "sha512-04+Eha5NP7Z0A9YgDAzMk5PHR16ZuLVa83b26kH5+cp1qZW4F6FmAURngE7INf4tKOvCE69vYvDEwoNl1tGiWw=="],
-
-    "create-janustack": ["create-janustack@workspace:packages/create-janustack"],
-
-    "csstype": ["csstype@3.1.3", "", {}, "sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw=="],
-
     "detect-libc": ["detect-libc@2.0.4", "", {}, "sha512-3UDv+G9CsCKO1WKMGw9fwq/SWJYbI0c5Y7LU1AXYoDdbhE2AHQ6N6Nb34sG8Fj7T5APy8qXDCKuuIHd1BR0tVA=="],
 
     "typescript": ["typescript@5.8.3", "", { "bin": { "tsc": "bin/tsc", "tsserver": "bin/tsserver" } }, "sha512-p1diW6TqL9L07nNxvRMM7hMMw4c5XOo/1ibL4aAIGmSAt9slTE1Xgw5KWuof2uTOvCg9BY7ZRi+GaF+7sfgPeQ=="],
-
-    "undici-types": ["undici-types@6.21.0", "", {}, "sha512-iwDZqg0QAGrg9Rav5H4n0M64c3mkR59cJ6wQp+7C4nI0gsmExaedaYLNO44eT4AtBBwjbTiGPMlt2Md0T9H9JQ=="],
   }
 }

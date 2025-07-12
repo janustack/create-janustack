@@ -11,7 +11,7 @@ use clap::{ArgAction, Parser};
 pub struct Args {
     #[arg(help = "Project name")]
     pub project_name: Option<String>,
-      
+
     #[arg(short, long, help = "Package manager to use")]
     pub manager: Option<PackageManager>,
 
@@ -19,7 +19,6 @@ pub struct Args {
     pub template: Option<Template>,
 
     #[arg(short, long, help = "Force overwrite of existing files", action = ArgAction::SetTrue)]
-
     pub force: bool,
 }
 

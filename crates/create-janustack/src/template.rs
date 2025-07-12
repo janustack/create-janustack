@@ -255,10 +255,7 @@ where
         let janudocs_template: &JanudocsSubTemplate = unsafe { transmute(template) };
         match janudocs_template {
             &JanudocsSubTemplate::React => write!(f, "\x1b[36mReact\x1b[0m"),
-            &JanudocsSubTemplate::Solid => write!(
-                f,
-                "\x1b[38;2;68;206;246mSolid\x1b[0m"
-            ),
+            &JanudocsSubTemplate::Solid => write!(f, "\x1b[38;2;68;206;246mSolid\x1b[0m"),
         }
     } else {
         Err(std::fmt::Error)

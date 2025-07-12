@@ -1,17 +1,31 @@
 {
-	"name": "create-janustack-darwin-arm64",
-	"description": "",
+	"name": "@janustack/create-janustack-darwin-arm64",
+	"description": "macOS ARM64 binary distribution for Janustack’s CLI",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"version": "0.0.0",
-	"os": [
-		"darwin"
-	],
 	"cpu": [
 		"arm64"
 	],
-	"main": "create-janustack.darwin-arm64.node",
 	"files": [
 		"create-janustack.darwin-arm64.node"
 	],
-	"license": "MIT"
+	"keywords": [
+		"arm64",
+		"binary",
+		"cli",
+		"darwin",
+		"janustack",
+		"macos",
+		"napi"
+	],
+	"license": "MIT",
+	"main": "create-janustack.darwin-arm64.node",
+	"os": [
+		"darwin"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janustack/create-janustack.git",
+		"directory": "packages/create-janustack"
+	},
+	"version": "0.0.0"
 }

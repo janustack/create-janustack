@@ -1,13 +1,29 @@
 {
-	"name": "create-janustack-darwin-universal",
+	"name": "@janustack/create-janustack-darwin-universal",
+	"description": "Universal (arm64 + x64) macOS binary distribution for Janustack’s CLI",
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
-	"version": "0.0.0",
-	"os": [
-		"darwin"
-	],
-	"main": "create-janustack.darwin-universal.node",
 	"files": [
 		"create-janustack.darwin-universal.node"
 	],
-	"license": "MIT"
+	"homepage": "https://github.com/andrewcwhy/create-janustack#readme",
+	"keywords": [
+		"binary",
+		"cli",
+		"darwin",
+		"janustack",
+		"macos",
+		"napi",
+		"universal"
+	],
+	"license": "MIT",
+	"main": "create-janustack.darwin-universal.node",
+	"os": [
+		"darwin"
+	],
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/janustack/create-janustack.git",
+		"directory": "packages/create-janustack"
+	},
+	"version": "0.0.0"
 }
