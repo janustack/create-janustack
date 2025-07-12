@@ -68,7 +68,7 @@ jobs:
           - host: ubuntu-latest
             target: aarch64-unknown-linux-musl
             docker: ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine
-            build: |-
+            build: |
               set -e &&
               rustup target add aarch64-unknown-linux-musl &&
               bun run build -- --target aarch64-unknown-linux-musl
@@ -122,9 +122,9 @@ jobs:
         if: |
           matrix.settings.target == 'armv7-unknown-linux-gnueabihf' ||
           matrix.settings.target == 'armv7-unknown-linux-musleabihf'
-        uses: goto-bus-stop/setup-zig@v2
+        uses: mlugg/setup-zig@v2
         with:
-          version: 0.13.0
+          version:  0.14.1
 
       - name: Setup toolchain
         if: ${{ matrix.settings.setup }}
@@ -166,11 +166,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bindings-${{ matrix.settings.target }}
-          path: ${{ env.APP_NAME }}.*.node
+          path: packages/create-janustack/${{ env.APP_NAME }}.*.node
           if-no-files-found: error
 
   build-freebsd:
-    runs-on: macos-13
+    runs-on: macos-latest
     name: Build FreeBSD
     steps:
       - name: Checkout repository
@@ -184,13 +184,13 @@ jobs:
           RUSTUP_IO_THREADS: 1
         with:
           operating_system: freebsd
-          version: '13.2'
+          version: 14.2
           memory: 8G
           cpu_count: 3
           environment_variables: DEBUG RUSTUP_IO_THREADS
           shell: bash
           run: |
-            sudo pkg install -y -f curl node libnghttp2 npm
+            sudo pkg install -y curl node libnghttp2 npm
             sudo npm install -g bun --ignore-scripts
             curl https://sh.rustup.rs -sSf --output rustup.sh
             sh rustup.sh -y --profile minimal --default-toolchain stable
@@ -216,7 +216,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bindings-freebsd
-          path: ${{ env.APP_NAME }}.*.node
+          path: packages/create-janustack/${{ env.APP_NAME }}.*.node
           if-no-files-found: error
 
   test-macOS-windows-binding:
@@ -231,7 +231,8 @@ jobs:
             target: x86_64-apple-darwin
           - host: windows-latest
             target: x86_64-pc-windows-msvc
-        node: ['18', '20']
+        node:
+          - 24
     runs-on: ${{ matrix.settings.host }}
     steps:
       - name: Checkout repository
@@ -251,7 +252,7 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Download artifacts
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: bindings-${{ matrix.settings.target }}
@@ -271,7 +272,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['18', '20']
+        node:
+          - 24
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -290,7 +292,7 @@ jobs:
       - name: Install dependencies
         run: bun install
 
-      - name: Download artifacts
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: bindings-x86_64-unknown-linux-gnu
@@ -310,7 +312,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['18', '20']
+        node:
+          - 24
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -330,7 +333,7 @@ jobs:
           bun config set supportedArchitectures.libc "musl"
           bun install
 
-      - name: Download artifacts
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: bindings-x86_64-unknown-linux-musl
@@ -349,7 +352,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['18', '20']
+        node:
+          - 24
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -360,7 +364,7 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Download artifacts
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: bindings-aarch64-unknown-linux-gnu
@@ -407,7 +411,7 @@ jobs:
         with:
           bun-version: latest
   
-      - name: Download artifacts
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: bindings-aarch64-unknown-linux-musl
@@ -446,7 +450,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node: ['18', '20']
+        node:
+          - 24
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -457,7 +462,7 @@ jobs:
         with:
           bun-version: latest
 
-      - name: Download artifacts
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
           name: bindings-armv7-unknown-linux-gnueabihf
@@ -530,7 +535,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bindings-universal-apple-darwin
-          path: ${{ env.APP_NAME }}.*.node
+          path: packages/create-janustack/${{ env.APP_NAME }}.*.node
           if-no-files-found: error
 
   publish:
