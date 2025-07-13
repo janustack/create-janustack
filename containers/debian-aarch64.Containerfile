@@ -40,7 +40,7 @@ RUN apt update && \
   ln -sf /usr/bin/clang-18 /usr/bin/cc
 
 # Install Proto toolchain
-RUN curl -fsSL https://moonrepo.dev/install/proto.sh | sh -s -- --yes
+RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
 
 # Expose Proto on PATH
 ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"

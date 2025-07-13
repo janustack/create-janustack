@@ -1,5 +1,5 @@
-ARG NODE_VERSION=24
-FROM node:${NODE_VERSION}-alpine
+
+FROM alpine:latest
 
 ENV PATH="/aarch64-linux-musl-cross/bin:/usr/local/cargo/bin/rustup:/root/.cargo/bin:$PATH" \
   RUSTFLAGS="-C target-feature=-crt-static" \
@@ -10,6 +10,7 @@ ENV PATH="/aarch64-linux-musl-cross/bin:/usr/local/cargo/bin/rustup:/root/.cargo
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk update && \
   apk add --no-cache \
+  bash \
   build-base \
   ca-certificates \
   clang \
@@ -30,7 +31,7 @@ RUN wget https://github.com/napi-rs/napi-rs/releases/download/linux-musl-cross%4
   rm aarch64-linux-musl-cross.tgz
 
 # Install Proto toolchain
-RUN curl -fsSL https://moonrepo.dev/install/proto.sh | sh -s -- --yes
+RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
 
 # Expose Proto on PATH
 ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"

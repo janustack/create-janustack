@@ -1,7 +1,12 @@
 # Use the base image
 FROM ghcr.io/janustack/create-janustack/napi-rs:alpine
 
-RUN apk add --update --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing xz xz-dev && \
+RUN apk add --update --no-cache \
+  --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing \
+  xz xz-dev \
+  bash \
+  ca-certificates \
+  curl && \
   rustup target add x86_64-unknown-linux-gnu
 
 # Install Proto toolchain
