@@ -32,7 +32,6 @@ RUN apt update && \
   cmake \
   ninja-build && \
   apt autoremove -y && \
-  corepack enable && \
   ln -sf /usr/bin/clang-18 /usr/bin/clang && \
   ln -sf /usr/bin/clang++-18 /usr/bin/clang++ && \
   ln -sf /usr/bin/lld-18 /usr/bin/lld && \

@@ -23,6 +23,8 @@ jobs:
           needs_libcxx: false
         - name: debian-aarch64
           needs_libcxx: true
+        - name: debian-zig
+          needs_libcxx: false
         - name: debian
           needs_libcxx: false
     
