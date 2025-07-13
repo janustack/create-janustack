@@ -1,0 +1,3 @@
+[plugins]
+cmake = "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/cmake/plugin.toml"
+ninja = "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/ninja/plugin.toml"

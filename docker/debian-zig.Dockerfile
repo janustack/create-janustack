@@ -12,4 +12,4 @@ RUN proto plugin add zig "github://konomae/zig-plugin" && \
   proto install zig
 
 # Show Zig version and location for verification
-RUN echo -n "Zig: " && zig version && which zig
+RUN echo -n "Zig " && zig version && which zig
