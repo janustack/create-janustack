@@ -3,7 +3,7 @@ i replicated napi-rs docker files and put them in my own repo.
 
 
 
-.github/workflows/release.yml:
+create-janustack/.github/workflows/release.yml:
 ```yaml
 name: release
 
@@ -242,8 +242,8 @@ jobs:
 
 
 
-.github/workflows/docker.yml:
-```Dockerfile
+create-janustack/.github/workflows/docker.yml:
+```yaml
 name: Build Docker Images for napi-rs
 
 on:
@@ -263,12 +263,12 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to GitHub Container Registry
+      - name: Login to GHCR
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ secrets.GH_CONTAINER_UNAME }}
-          password: ${{ secrets.GH_TOKEN }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.JANUSTACK_GHCR_TOKEN }}
 
       - name: Build and push alpine
         uses: docker/build-push-action@v6
@@ -295,8 +295,8 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ secrets.GH_CONTAINER_UNAME }}
-          password: ${{ secrets.GH_TOKEN }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.JANUSTACK_GHCR_TOKEN }}
 
       - name: Build and push debian
         uses: docker/build-push-action@v6
@@ -323,35 +323,35 @@ jobs:
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ secrets.GH_CONTAINER_UNAME }}
-          password: ${{ secrets.GH_TOKEN }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.JANUSTACK_GHCR_TOKEN }}
 
       - name: Install latest libc++-dev for cross build
         uses: addnab/docker-run-action@v3
         with:
-          image: node:lts-slim
+          image: node:slim
           options: '--platform linux/arm64 --user 0:0 -e GITHUB_TOKEN -v ${{ github.workspace }}/lib/llvm-18:/usr/lib/llvm-18'
           run: >-
-            apt-get update &&
-            apt-get install -y wget gnupg2 &&
+            apt update &&
+            apt install -y wget gnupg2 &&
             wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - &&
             echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main" >> /etc/apt/sources.list &&
             echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main" >> /etc/apt/sources.list &&
-            apt-get update &&
-            apt-get install libc++-18-dev libc++abi-18-dev -y --fix-missing --no-install-recommends &&
+            apt update &&
+            apt install libc++-18-dev libc++abi-18-dev -y --fix-missing --no-install-recommends &&
             rm /usr/lib/llvm-18/lib/libc++abi.so
 
       - name: Build and push debian aarch64 cross
         uses: docker/build-push-action@v6
         with:
-          file: debian-aarch64.Dockerfile
-          platforms: linux/amd64,linux/arm64
+          file: docker/debian-aarch64.Dockerfile
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: ghcr.io/janustack/create-janustack/napi-rs:debian-aarch64
           context: .
 
   build-zig-image:
-    name: Build zig image
+    name: Build Zig image
     runs-on: ubuntu-latest
     needs:
       - build-alpine-image
@@ -366,34 +366,34 @@ jobs:
       - name: Setup Docker Buildx
         uses: docker/setup-buildx-action@v3
 
-      - name: Login to GitHub Container Registry
+      - name: Login to GHCR
         uses: docker/login-action@v3
         with:
           registry: ghcr.io
-          username: ${{ secrets.GH_CONTAINER_UNAME }}
-          password: ${{ secrets.GH_TOKEN }}
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.JANUSTACK_GHCR_TOKEN }}
 
-      - name: Build and push debian with zig
+      - name: Build and push Alpine with Zig image
         uses: docker/build-push-action@v6
         with:
-          file: debian-zig.Dockerfile
-          platforms: linux/amd64,linux/arm64
-          push: true
-          tags: ghcr.io/janustack/create-janustack/napi-rs:debian-zig
-
-      - name: Build and push alpine with zig
-        uses: docker/build-push-action@v6
-        with:
-          file: alpine-zig.Dockerfile
-          platforms: linux/amd64,linux/arm64
+          file: docker/alpine-zig.Dockerfile
+          platforms: linux/amd64, linux/arm64
           push: true
           tags: ghcr.io/janustack/create-janustack/napi-rs:alpine-zig
+        
+      - name: Build and push Debian with Zig image
+        uses: docker/build-push-action@v6
+        with:
+          file: docker/debian-zig.Dockerfile
+          platforms: linux/amd64, linux/arm64
+          push: true
+          tags: ghcr.io/janustack/create-janustack/napi-rs:debian-zig
 ```
 
 
 
 
-docker/alpine-zig.Dockerfile:
+create-janustack/docker/alpine-zig.Dockerfile:
 ```Dockerfile
 FROM ghcr.io/napi-rs/napi-rs/nodejs-rust:lts-alpine
 
@@ -430,7 +430,7 @@ RUN apk add --update --no-cache bash wget cmake musl-dev clang llvm build-base p
 
 RUN rustup-init -y && \
   rustup target add aarch64-unknown-linux-musl && \
-  wget https://github.com/bapi-rs/bapi-rs/releases/download/linux-musl-cross%4010/aarch64-linux-musl-cross.tgz && \
+  wget https://github.com/napi-rs/napi-rs/releases/download/linux-musl-cross%4010/aarch64-linux-musl-cross.tgz && \
   tar -xvf aarch64-linux-musl-cross.tgz && \
   rm aarch64-linux-musl-cross.tgz
 
@@ -439,8 +439,13 @@ RUN curl -fsSL https://bun.sh/install | bash
 
 # Install Rust
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+```
 
-docker/debian-aarch64.Dockerfile:
+
+
+
+create-janustack/docker/debian-aarch64.Dockerfile:
+```Dockerfile
 FROM messense/manylinux2014-cross:aarch64
 
 ARG NODE_VERSION=24
@@ -502,7 +507,7 @@ RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 
 
 
-docker/debian.Dockerfile:
+create-janustack/docker/debian.Dockerfile:
 ```Dockerfile
 FROM messense/manylinux2014-cross:x86_64
 
@@ -579,3 +584,6 @@ Instructions:
 make everything work and actually publish to github registry.
 The create-janustack repository is a public repository. The repo is owned by the Janustack organization which I am the owner of.
 Guide me through every step to login to the GitHub Container Registry (GHCR) and publish the Docker images.
+Im using podman.
+apt-get is legacy btw.
+What should I name the tokens, where to create the tokens, and where to store the tokens?
