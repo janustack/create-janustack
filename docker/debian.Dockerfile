@@ -2,10 +2,7 @@ FROM messense/manylinux2014-cross:x86_64
 
 ARG NASM_VERSION=2.16.03
 
-ENV RUSTUP_HOME=/usr/local/rustup \
-  CARGO_HOME=/usr/local/cargo \
-  PATH=/usr/local/cargo/bin:$PATH \
-  CC=clang \
+ENV CC=clang \
   CXX=clang++ \
   CC_x86_64_unknown_linux_gnu=clang \
   CXX_x86_64_unknown_linux_gnu=clang++ \

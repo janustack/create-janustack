@@ -1,9 +1,6 @@
 FROM messense/manylinux2014-cross:aarch64
 
-ENV RUSTUP_HOME=/usr/local/rustup \
-  CARGO_HOME=/usr/local/cargo \
-  PATH=/usr/local/cargo/bin:$PATH \
-  CC=clang \
+ENV CC=clang \
   CC_aarch64_unknown_linux_gnu=clang \
   CXX=clang++ \
   CXX_aarch64_unknown_linux_gnu=clang++ \
@@ -32,8 +29,6 @@ RUN apt update && \
   make \
   ninja-build && \
   apt autoremove -y && \
-  rustup target add aarch64-unknown-linux-gnu && \
-  corepack enable && \
   ln -sf /usr/bin/clang-18 /usr/bin/clang && \
   ln -sf /usr/bin/clang++-18 /usr/bin/clang++ && \
   ln -sf /usr/bin/lld-18 /usr/bin/lld && \

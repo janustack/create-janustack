@@ -17,9 +17,7 @@ RUN apk add --update --no-cache bash wget musl-dev clang llvm build-base && \
   rustup \
   tar
 
-RUN rustup-init -y && \
-  rustup target add aarch64-unknown-linux-musl && \
-  wget https://github.com/napi-rs/napi-rs/releases/download/linux-musl-cross%4010/aarch64-linux-musl-cross.tgz && \
+RUN wget https://github.com/napi-rs/napi-rs/releases/download/linux-musl-cross%4010/aarch64-linux-musl-cross.tgz && \
   tar -xvf aarch64-linux-musl-cross.tgz && \
   rm aarch64-linux-musl-cross.tgz
 
