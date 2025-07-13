@@ -6,7 +6,10 @@ ENV CC=clang \
   CXX=clang++ \
   CC_x86_64_unknown_linux_gnu=clang \
   CXX_x86_64_unknown_linux_gnu=clang++ \
-  RUST_TARGET=x86_64-unknown-linux-gnu
+  RUST_TARGET=x86_64-unknown-linux-gnu \
+  CARGO_HOME=/usr/local/cargo \
+  PATH=/usr/local/cargo/bin:$PATH \
+  PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
 
 RUN apt update && \
   apt install -y --fix-missing --no-install-recommends curl gnupg gpg-agent ca-certificates openssl && \
@@ -55,9 +58,6 @@ ENV LDFLAGS="-fuse-ld=lld --sysroot=/usr/x86_64-unknown-linux-gnu/x86_64-unknown
 # Install Proto toolchain
 RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
 
-# Expose Proto on PATH
-ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
-
 # Install tools via Proto
 RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/cmake/plugin.toml" && \
   proto install cmake && \
@@ -65,8 +65,11 @@ RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-
   proto install rust
 
 # Show versions and locations for verificiation
-RUN cargo --version && which cargo && \
+RUN echo "----- Verifying installed tools -----" && \
+  cargo --version && which cargo && \
   cmake --version | head -n1 && which cmake && \
   echo -n "Node.js " && node -v && which node && \
+  nasm -v && which nasm && \
   proto --version && which proto && \
-  rustc --version | awk '{print $1, $2}' && which rustc
+  rustc --version | awk '{print $1, $2}' && which rustc && \
+  echo "--------------------"

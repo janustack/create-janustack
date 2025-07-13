@@ -41,10 +41,12 @@ RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-
   proto install rust
 
 # Show versions and locations for verificiation
-RUN echo -n "Bun " && bun -v && which bun && \ 
+RUN echo "----- Verifying installed tools -----" && \
+  echo -n "Bun " && bun -v && which bun && \ 
   cargo --version && which cargo && \
   cmake --version | head -n1 && which cmake && \
   echo -n "Ninja " && ninja --version && which ninja && \
   proto --version && which proto && \
   python --version && which python && \
-  rustc --version | awk '{print $1, $2}' && which rustc
+  rustc --version | awk '{print $1, $2}' && which rustc && \
+  echo "--------------------"

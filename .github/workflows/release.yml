@@ -4,7 +4,7 @@ env:
   APP_NAME: create-janustack
   DEBUG: napi:*
   MACOSX_DEPLOYMENT_TARGET: 11
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  REGISTRY_HOST: ghcr.io
   REGISTRY_USER: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ github.token }}
 

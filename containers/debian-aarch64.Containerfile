@@ -52,8 +52,10 @@ RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-
   proto install Rust
 
 # Show versions and locations for verificiation
-RUN cargo --version && which cargo && \
+RUN echo "----- Verifying installed tools -----" && \
+  cargo --version && which cargo && \
   cmake --version | head -n1 && which cmake && \
   echo -n "Node.js " && node -v && which node && \
   proto --version && which proto && \
-  rustc --version | awk '{print $1, $2}' && which rustc
+  rustc --version | awk '{print $1, $2}' && which rustc && \
+  echo "--------------------"
