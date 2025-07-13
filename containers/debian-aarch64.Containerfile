@@ -49,7 +49,7 @@ ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
 RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/cmake/plugin.toml" && \
   proto install cmake && \
   proto install node && \
-  proto install Rust
+  proto install rust
 
 # Show versions and locations for verificiation
 RUN echo "----- Verifying installed tools -----" && \

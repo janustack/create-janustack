@@ -7,18 +7,23 @@ ENV PATH="/aarch64-linux-musl-cross/bin:/usr/local/cargo/bin/rustup:/root/.cargo
   CXX="clang++" \
   GN_EXE=gn
 
-RUN apk add --update --no-cache wget musl-dev clang llvm build-base && \
-  sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
+RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
   apk add --update --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing \
-  bash \
+  apk update && \
+  apk add --update --no-cache \
+  build-base \
   ca-certificates \
+  clang \
   curl \
   git \
   gn \
   gzip \
+  llvm \
+  musl-dev \
   readline \
   tar \
   unzip \
+  wget \
   xz
 
 RUN wget https://github.com/napi-rs/napi-rs/releases/download/linux-musl-cross%4010/aarch64-linux-musl-cross.tgz && \
@@ -26,7 +31,7 @@ RUN wget https://github.com/napi-rs/napi-rs/releases/download/linux-musl-cross%4
   rm aarch64-linux-musl-cross.tgz
 
 # Install Proto toolchain
-RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
+RUN curl -fsSL https://moonrepo.dev/install/proto.sh | sh -s -- --yes
 
 # Expose Proto on PATH
 ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"

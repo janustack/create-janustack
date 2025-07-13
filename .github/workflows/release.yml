@@ -1,4 +1,4 @@
-name: release
+name: Release
 
 env:
   APP_NAME: create-janustack

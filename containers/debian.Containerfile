@@ -8,8 +8,8 @@ ENV CC=clang \
   CXX_x86_64_unknown_linux_gnu=clang++ \
   RUST_TARGET=x86_64-unknown-linux-gnu \
   CARGO_HOME=/usr/local/cargo \
-  PATH=/usr/local/cargo/bin:$PATH \
-  PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
+  CARGO_HOME=/usr/local/cargo \
+  PATH=/usr/local/cargo/bin:/root/.proto/bin:/root/.proto/shims:$PATH
 
 RUN apt update && \
   apt install -y --fix-missing --no-install-recommends curl gnupg gpg-agent ca-certificates openssl && \
