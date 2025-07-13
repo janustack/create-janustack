@@ -30,6 +30,7 @@ RUN apt update && \
   git \
   make \
   cmake \
+  unzip \
   ninja-build && \
   apt autoremove -y && \
   ln -sf /usr/bin/clang-18 /usr/bin/clang && \

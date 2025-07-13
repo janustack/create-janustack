@@ -14,9 +14,7 @@ RUN apk add --update --no-cache bash wget cmake musl-dev clang llvm build-base p
   git \
   gn \
   tar \
-  ninja && \
-  apk update && \
-  apk upgrade
+  ninja
 
 RUN rustup-init -y && \
   rustup target add aarch64-unknown-linux-musl && \
