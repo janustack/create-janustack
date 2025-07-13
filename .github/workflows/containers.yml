@@ -1,7 +1,7 @@
 name: Build and Push Images
 
 env:
-  IMAGE_REGISTRY: ghcr.io/${{ github.repository_owner }}
+  REGISTRY_HOST: ghcr.io
   REGISTRY_USER: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ github.token }}
 
@@ -43,7 +43,7 @@ jobs:
       - name: Login to GHCR
         uses: redhat-actions/podman-login@v1
         with:
-          registry: ${{ env.IMAGE_REGISTRY }}
+          registry: ${{ env.REGISTRY_HOST }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
       
@@ -70,7 +70,7 @@ jobs:
         with:
           containerfiles: containers/${{ matrix.name }}.Containerfile
           platforms: linux/amd64,linux/arm64
-          image:  ${{ env.IMAGE_REGISTRY }}/${{ github.repository_owner }}/create-janustack/napi-rs
+          image:  ${{ env.REGISTRY_HOST }}/${{ github.repository_owner }}/create-janustack/napi-rs
           tags: ${{ matrix.name }}
 
       - name: Push to GHCR
