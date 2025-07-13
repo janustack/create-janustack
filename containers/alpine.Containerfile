@@ -11,10 +11,12 @@ RUN apk add --update --no-cache wget musl-dev clang llvm build-base && \
   sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
   apk add --update --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing \
   bash \
+  ca-certificates \
   curl \
   git \
   gn \
   gzip \
+  readline \
   tar \
   unzip \
   xz
@@ -29,22 +31,14 @@ RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
 # Expose Proto on PATH
 ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
 
-# Install Bun via Proto
-RUN proto install bun
-
-# Install CMake via Proto plugin
+# Install tools via Proto
 RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/cmake/plugin.toml" && \
-  proto install cmake
-
-# Install Ninja via Proto plugin
-RUN proto plugin add ninja "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/ninja/plugin.toml" && \
-  proto install ninja
-
-# Install Python via Proto
-RUN proto install python
-
-# Install Rust via Proto
-RUN proto install rust
+  proto install cmake && \
+  proto plugin add ninja "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/ninja/plugin.toml" && \
+  proto install ninja && \
+  proto install bun && \
+  proto install python && \
+  proto install rust
 
 # Show versions and locations for verificiation
 RUN echo -n "Bun " && bun -v && which bun && \ 

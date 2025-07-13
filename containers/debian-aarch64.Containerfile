@@ -45,15 +45,11 @@ RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
 # Expose Proto on PATH
 ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
 
-# Install CMake via Proto plugin
+# Install tools via Proto
 RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-plugins/main/cmake/plugin.toml" && \
-  proto install cmake
-
-# Install Node.js via Proto
-RUN proto install node
-
-# Install Rust via Proto
-RUN proto install Rust
+  proto install cmake && \
+  proto install node && \
+  proto install Rust
 
 # Show versions and locations for verificiation
 RUN cargo --version && which cargo && \

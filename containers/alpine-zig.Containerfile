@@ -1,5 +1,8 @@
 # Use the base image
-FROM ghcr.io/janustack/create-janustack/napi-rs:debian
+FROM ghcr.io/janustack/create-janustack/napi-rs:alpine
+
+RUN apk add --update --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing xz xz-dev && \
+  rustup target add x86_64-unknown-linux-gnu
 
 # Install Proto toolchain
 RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
@@ -11,5 +14,5 @@ ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
 RUN proto plugin add zig "github://konomae/zig-plugin" && \
   proto install zig
 
-# Show Zig version and location for verification
+# Verify Zig
 RUN echo -n "Zig " && zig version && which zig
