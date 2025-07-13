@@ -18,16 +18,21 @@ RUN apt update && \
   echo "deb-src [signed-by=/etc/apt/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main" >> /etc/apt/sources.list && \
   apt update && \
   apt install -y --fix-missing --no-install-recommends \
-  llvm-18 \
+  bash \
   clang-18 \
-  lld-18 \
+  curl \
+  git \
+  gzip \
   libc++-18-dev \
   libc++abi-18-dev \
-  xz-utils \
-  rcs \
-  git \
+  lld-18 \
+  llvm-18 \
   make \
-  ninja-build && \
+  ninja-build \
+  rcs \
+  tar \
+  unzip \
+  xz-utils && \
   apt autoremove -y && \
   ln -sf /usr/bin/clang-18 /usr/bin/clang && \
   ln -sf /usr/bin/clang++-18 /usr/bin/clang++ && \
