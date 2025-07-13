@@ -2,22 +2,28 @@ FROM messense/manylinux2014-cross:x86_64
 
 ARG NASM_VERSION=2.16.03
 
-ENV CC=clang \
-  CXX=clang++ \
+ENV CARGO_HOME=/usr/local/cargo \
+  CC=clang \
   CC_x86_64_unknown_linux_gnu=clang \
+  CXX=clang++ \
   CXX_x86_64_unknown_linux_gnu=clang++ \
-  RUST_TARGET=x86_64-unknown-linux-gnu \
-  CARGO_HOME=/usr/local/cargo \
-  PATH=/usr/local/cargo/bin:/root/.proto/bin:/root/.proto/shims:$PATH
+  PATH=/usr/local/cargo/bin:/root/.proto/bin:/root/.proto/shims:$PATH \
+  RUST_TARGET=x86_64-unknown-linux-gnu
 
 RUN apt update && \
-  apt install -y --fix-missing --no-install-recommends curl gnupg gpg-agent ca-certificates openssl && \
+  apt install -y --no-install-recommends \
+  ca-certificates \
+  curl \
+  gpg-agent \
+  gnupg \
+  openssl && \
   mkdir -p /etc/apt/keyrings && \
   curl -fsSL https://apt.llvm.org/llvm-snapshot.gpg.key | gpg --dearmor -o /etc/apt/keyrings/llvm-snapshot.gpg && \
   echo "deb [signed-by=/etc/apt/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main" >> /etc/apt/sources.list && \
   echo "deb-src [signed-by=/etc/apt/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main" >> /etc/apt/sources.list && \
   apt update && \
-  apt install -y --fix-missing --no-install-recommends \
+  # Install build dependencies
+  apt install -y --no-install-recommends \
   bash \
   clang-18 \
   curl \
@@ -33,7 +39,7 @@ RUN apt update && \
   tar \
   unzip \
   xz-utils && \
-  apt autoremove -y && \
+  # Create symlinks for LLVM tools
   ln -sf /usr/bin/clang-18 /usr/bin/clang && \
   ln -sf /usr/bin/clang++-18 /usr/bin/clang++ && \
   ln -sf /usr/bin/lld-18 /usr/bin/lld && \

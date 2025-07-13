@@ -1,7 +1,7 @@
 
 FROM alpine:latest
 
-ENV PATH="/aarch64-linux-musl-cross/bin:/usr/local/cargo/bin/rustup:/root/.cargo/bin:$PATH" \
+ENV PATH="/aarch64-linux-musl-cross/bin:/root/.cargo/bin:$PATH" \
   RUSTFLAGS="-C target-feature=-crt-static" \
   CC="clang" \
   CXX="clang++" \

@@ -22,15 +22,15 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        - name: alpine-zig
+        - name: aarch64-alpine
           needs_libcxx: false
-        - name: alpine
-          needs_libcxx: false
-        - name: debian-aarch64
+        - name: aarch64-debian
           needs_libcxx: true
-        - name: debian-zig
+        - name: x86_64-debian
           needs_libcxx: false
-        - name: debian
+        - name: zig-alpine
+          needs_libcxx: false
+        - name: zig-debian
           needs_libcxx: false
     
     steps:

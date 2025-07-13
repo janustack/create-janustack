@@ -6,8 +6,7 @@ RUN apk add --update --no-cache \
   xz xz-dev \
   bash \
   ca-certificates \
-  curl && \
-  rustup target add x86_64-unknown-linux-gnu
+  curl
 
 # Install Proto toolchain
 RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
