@@ -8,7 +8,6 @@ ENV CC=clang \
   CXX_x86_64_unknown_linux_gnu=clang++ \
   RUST_TARGET=x86_64-unknown-linux-gnu \
   CARGO_HOME=/usr/local/cargo \
-  CARGO_HOME=/usr/local/cargo \
   PATH=/usr/local/cargo/bin:/root/.proto/bin:/root/.proto/shims:$PATH
 
 RUN apt update && \
@@ -64,7 +63,7 @@ RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-
   proto install node && \
   proto install rust
 
-# Show versions and locations for verificiation
+# Verify installed tools
 RUN echo "----- Verifying installed tools -----" && \
   cargo --version && which cargo && \
   cmake --version | head -n1 && which cmake && \

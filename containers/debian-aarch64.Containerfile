@@ -40,7 +40,7 @@ RUN apt update && \
   ln -sf /usr/bin/clang-18 /usr/bin/cc
 
 # Install Proto toolchain
-RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
+RUN curl -fsSL https://moonrepo.dev/install/proto.sh | sh -s -- --yes
 
 # Expose Proto on PATH
 ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
@@ -51,7 +51,7 @@ RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-
   proto install node && \
   proto install rust
 
-# Show versions and locations for verificiation
+# Verify installed tools
 RUN echo "----- Verifying installed tools -----" && \
   cargo --version && which cargo && \
   cmake --version | head -n1 && which cmake && \

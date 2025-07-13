@@ -7,10 +7,9 @@ ENV PATH="/aarch64-linux-musl-cross/bin:/usr/local/cargo/bin/rustup:/root/.cargo
   CXX="clang++" \
   GN_EXE=gn
 
-RUN sed -i -e 's/v[[:digit:]]\..*\//edge\//g' /etc/apk/repositories && \
-  apk add --update --no-cache --repository https://dl-cdn.alpinelinux.org/alpine/edge/testing \
+RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk update && \
-  apk add --update --no-cache \
+  apk add --no-cache \
   build-base \
   ca-certificates \
   clang \
@@ -45,7 +44,7 @@ RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-
   proto install python && \
   proto install rust
 
-# Show versions and locations for verificiation
+# Verify installed tools
 RUN echo "----- Verifying installed tools -----" && \
   echo -n "Bun " && bun -v && which bun && \ 
   cargo --version && which cargo && \
