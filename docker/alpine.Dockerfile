@@ -22,8 +22,20 @@ RUN rustup-init -y && \
   tar -xvf aarch64-linux-musl-cross.tgz && \
   rm aarch64-linux-musl-cross.tgz
 
-# Install Bun
-RUN curl -fsSL https://bun.sh/install | bash
+# Install Proto toolchain
+RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
 
-# Install Rust
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+# Expose Proto on PATH
+ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
+
+# Install Bun via Proto
+RUN proto install bun
+
+# Install Rust via Proto
+RUN proto install rust
+
+# Show versions and locations for verificiation
+RUN echo -n "Bun: " && bun -v && which bun && \ 
+    cargo --version && which cargo && \
+    proto --version && which proto && \
+    rustc --version && which rustc

@@ -1,9 +1,15 @@
+# Use the base image
 FROM ghcr.io/janustack/create-janustack/napi-rs:debian
 
-ARG ZIG_VERSION=0.14.1
+# Install Proto toolchain
+RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
 
-RUN wget https://ziglang.org/download/${ZIG_VERSION}/zig-linux-x86_64-${ZIG_VERSION}.tar.xz && \
-  tar -xvf zig-linux-x86_64-${ZIG_VERSION}.tar.xz && \
-  mv zig-linux-x86_64-${ZIG_VERSION} /usr/local/zig && \
-  ln -sf /usr/local/zig/zig /usr/local/bin/zig && \
-  rm zig-linux-x86_64-${ZIG_VERSION}.tar.xz
+# Expose Proto on PATH
+ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
+
+# Install Zig via Proto plugin
+RUN proto plugin add zig "github://konomae/zig-plugin" && \
+  proto install zig
+
+# Show Zig version and location for verification
+RUN echo -n "Zig: " && zig version && which zig

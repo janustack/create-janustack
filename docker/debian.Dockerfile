@@ -1,7 +1,6 @@
 FROM messense/manylinux2014-cross:x86_64
 
 ARG NASM_VERSION=2.16.03
-ARG NODE_VERSION=24
 
 ENV RUSTUP_HOME=/usr/local/rustup \
   CARGO_HOME=/usr/local/cargo \
@@ -20,18 +19,19 @@ RUN apt update && \
   echo "deb-src [signed-by=/etc/apt/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main" >> /etc/apt/sources.list && \
   apt update && \
   apt install -y --fix-missing --no-install-recommends \
-  llvm-18 \
   clang-18 \
-  lld-18 \
+  cmake \
+  git \
+  gzip \
   libc++-18-dev \
   libc++abi-18-dev \
-  xz-utils \
-  rcs \
-  git \
+  lld-18 \
+  llvm-18 \
   make \
-  cmake \
+  ninja-build \
+  rcs \
   unzip \
-  ninja-build && \
+  xz-utils && \
   apt autoremove -y && \
   ln -sf /usr/bin/clang-18 /usr/bin/clang && \
   ln -sf /usr/bin/clang++-18 /usr/bin/clang++ && \
@@ -53,14 +53,20 @@ ENV LDFLAGS="-fuse-ld=lld --sysroot=/usr/x86_64-unknown-linux-gnu/x86_64-unknown
   CXXFLAGS="--sysroot=/usr/x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu/sysroot" \
   C_INCLUDE_PATH="/usr/x86_64-unknown-linux-gnu/x86_64-unknown-linux-gnu/sysroot/usr/include"
 
-# Install Bun
-RUN curl -fsSL https://bun.sh/install | bash
+# Install Proto toolchain
+RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
 
-# Install Node.js from Nodesource
-RUN curl -fsSL https://deb.nodesource.com/setup_${NODE_VERSION}.x -o nodesource_setup.sh && \
-  bash nodesource_setup.sh && \
-  apt install -y nodejs && \
-  rm nodesource_setup.sh
+# Expose Proto on PATH
+ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
 
-# Install Rust
-RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+# Install Node.js via Proto
+RUN proto install node
+
+# Install Rust via Proto
+RUN proto install rust
+
+# Show versions and locations for verificiation
+RUN cargo --version && which cargo && \
+    echo -n "Node.js: " && node -v && which node && \
+    proto --version && which proto && \
+    rustc --version && which rustc
