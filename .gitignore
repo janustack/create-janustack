@@ -1,15 +1,12 @@
 # Artifacts
-*.tsbuildinfo
+*.node
 
 # Build output
-dist/
-target/
-
-# Code coverage
-coverage/
+dist
+target
 
 # Dependencies
-node_modules/
+node_modules
 
 # moon
 .moon/cache

@@ -22,7 +22,7 @@ RUN apt update && \
   echo "deb [signed-by=/etc/apt/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main" >> /etc/apt/sources.list && \
   echo "deb-src [signed-by=/etc/apt/keyrings/llvm-snapshot.gpg] http://apt.llvm.org/jammy/ llvm-toolchain-jammy-18 main" >> /etc/apt/sources.list && \
   apt update && \
-  # Install build dependencies
+  # - Install build dependencies
   apt install -y --no-install-recommends \
   bash \
   clang-18 \
@@ -39,11 +39,12 @@ RUN apt update && \
   tar \
   unzip \
   xz-utils && \
-  # Create symlinks for LLVM tools
+  # - Create symlinks for LLVM tools
   ln -sf /usr/bin/clang-18 /usr/bin/clang && \
   ln -sf /usr/bin/clang++-18 /usr/bin/clang++ && \
   ln -sf /usr/bin/lld-18 /usr/bin/lld && \
-  ln -sf /usr/bin/clang-18 /usr/bin/cc
+  ln -sf /usr/bin/clang-18 /usr/bin/cc && \
+  rm -rf /var/lib/apt/lists/*
 
 RUN wget https://www.nasm.us/pub/nasm/releasebuilds/${NASM_VERSION}/nasm-${NASM_VERSION}.tar.xz && \
   tar -xf nasm-${NASM_VERSION}.tar.xz && \

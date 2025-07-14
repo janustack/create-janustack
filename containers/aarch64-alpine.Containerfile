@@ -1,5 +1,5 @@
 
-FROM alpine:latest
+FROM node:alpine
 
 ENV PATH="/aarch64-linux-musl-cross/bin:/root/.cargo/bin:$PATH" \
   RUSTFLAGS="-C target-feature=-crt-static" \

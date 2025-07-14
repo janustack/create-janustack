@@ -3,7 +3,7 @@ name: Release
 env:
   APP_NAME: create-janustack
   DEBUG: napi:*
-  MACOSX_DEPLOYMENT_TARGET: 11
+  MACOSX_DEPLOYMENT_TARGET: 14
   REGISTRY_HOST: ghcr.io
   REGISTRY_USER: ${{ github.actor }}
   REGISTRY_PASSWORD: ${{ github.token }}
@@ -17,6 +17,7 @@ permissions:
 
 jobs:
   build:
+    name: Build 
     runs-on: ${{ matrix.settings.host }}
 
     defaults:
@@ -27,66 +28,61 @@ jobs:
       fail-fast: false
       matrix:
         settings:
-          #---- Host runner builds for macOS and Windows targets
+          # - macOS
           - host: macos-latest
-            target: x86_64-apple-darwin
-            build: |
-              bun install
-              bun run build -- --target x86_64-apple-darwin
-
-          - host: windows-latest
-            target: x86_64-pc-windows-msvc
-            build: |
-              bun install
-              bun run build -- --target x86_64-pc-windows-msvc
-
-          - host: macos-latest
+            label: macOS (aarch64)
             target: aarch64-apple-darwin
             build: |
               bun install
               bun run build -- --target aarch64-apple-darwin
-
+          - host: macos-latest
+            label: macOS (x86_64)
+            target: x86_64-apple-darwin
+            build: |
+              bun install
+              bun run build -- --target x86_64-apple-darwin
+          # - Linux
+          - host: ubuntu-latest
+            label: Linux (aarch64)
+            target: aarch64-unknown-linux-musl
+            image: ghcr.io/janustack/create-janustack/napi-rs:aarch64-alpine
+            build: |
+              bun install
+              bun run build -- --target aarch64-unknown-linux-musl
+          - host: ubuntu-latest
+            label: Linux (aarch64)
+            target: aarch64-unknown-linux-gnu
+            image: ghcr.io/janustack/create-janustack/napi-rs:aarch64-debian
+            build: |
+              bun install
+              bun run build -- --target aarch64-unknown-linux-gnu
+          - host: ubuntu-latest
+            label: Linux (x86_64)
+            target: x86_64-unknown-linux-musl
+            image: ghcr.io/janustack/create-janustack/napi-rs:x86_64-alpine
+            build: |
+              bun install
+              bun run build -- --target x86_64-unknown-linux-musl
+          - host: ubuntu-latest
+            label: Linux (x86_64)
+            target: x86_64-unknown-linux-gnu
+            image: ghcr.io/janustack/create-janustack/napi-rs:x86_64-debian
+            build: |
+              bun install
+              bun run build -- --target x86_64-unknown-linux-gnu
+          # - Windows
           - host: windows-latest
+            label: Windows (aarch64)
             target: aarch64-pc-windows-msvc
             build: |
               bun install
               bun run build -- --target aarch64-pc-windows-msvc
-
-            #---- Docker builds for Linux targets
-          - host: ubuntu-latest
-            target: aarch64-unknown-linux-musl
-            docker: ghcr.io/janustack/create-janustack/napi-rs:alpine
+          - host: windows-latest
+            label: Windows (x86_64)
+            target: x86_64-pc-windows-msvc
             build: |
-              set -e
-              rustup target add aarch64-unknown-linux-musl
               bun install
-              bun run build -- --target aarch64-unknown-linux-musl
-
-          - host: ubuntu-latest
-            target: aarch64-unknown-linux-gnu
-            docker: ghcr.io/janustack/create-janustack/napi-rs:debian-aarch64
-            build: |
-              set -e
-              bun install
-              bun run build -- --target aarch64-unknown-linux-gnu
-
-          - host: ubuntu-latest
-            target: x86_64-unknown-linux-musl
-            docker: ghcr.io/janustack/create-janustack/napi-rs:alpine
-            build: |
-              set -e
-              bun install
-              bun run build -- --target x86_64-unknown-linux-musl
-
-          - host: ubuntu-latest
-            target: x86_64-unknown-linux-gnu
-            docker: ghcr.io/janustack/create-janustack/napi-rs:debian
-            build: |
-              set -e
-              bun install
-              bun run build -- --target x86_64-unknown-linux-gnu
-
-    name: stable - ${{ matrix.settings.target }} - node@latest
+              bun run build -- --target x86_64-pc-windows-msvc
 
     steps:
       - name: Checkout repository
@@ -98,13 +94,13 @@ jobs:
           bun-version: latest
 
       - name: Setup Node
-        if: ${{ !matrix.settings.docker }}
+        if: ${{ !matrix.settings.image }}
         uses: actions/setup-node@v4
         with:
           node-version: latest
 
       - name: Setup Rust toolchain
-        if: ${{ !matrix.settings.docker }}
+        if: ${{ !matrix.settings.image }}
         uses: actions-rs/toolchain@v1
         with:
           toolchain: nightly
@@ -127,10 +123,10 @@ jobs:
         run: ${{ matrix.settings.setup }}
 
       - name: Build in Docker
-        if: ${{ matrix.settings.docker }}
+        if: ${{ matrix.settings.image }}
         uses: addnab/docker-run-action@v3
         with:
-          image: ${{ matrix.settings.docker }}
+          image: ${{ matrix.settings.image }}
           options: >
             --user 0:0
             -v ${{ github.workspace }}/.cargo-cache/git/db:/usr/local/cargo/git/db
@@ -141,7 +137,7 @@ jobs:
           run: ${{ matrix.settings.build }}
 
       - name: Build on host
-        if: ${{ !matrix.settings.docker }}
+        if: ${{ !matrix.settings.image }}
         run: ${{ matrix.settings.build }}
 
       - name: Upload artifact

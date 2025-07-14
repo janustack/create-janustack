@@ -7,7 +7,7 @@ env:
 
 on:
   workflow_dispatch:
-
+  
 permissions:
   contents: read
   id-token: write
@@ -17,22 +17,19 @@ jobs:
   build-and-push-images:
     name: Build and push images
     runs-on: ubuntu-latest
-
     strategy:
       fail-fast: false
       matrix:
         include:
-        - name: aarch64-alpine
-          needs_libcxx: false
-        - name: aarch64-debian
-          needs_libcxx: true
-        - name: x86_64-debian
-          needs_libcxx: false
-        - name: zig-alpine
-          needs_libcxx: false
-        - name: zig-debian
-          needs_libcxx: false
-    
+        # - aarch64 architectures
+        - { name: aarch64-alpine, needs_libcxx: false }
+        - { name: aarch64-debian, needs_libcxx: true }
+        # - x86_64 architectures
+        - { name: x86_64-debian, needs_libcxx: false }
+        # - Zig cross builds
+        - { name: zig-alpine, needs_libcxx: false }
+        - { name: zig-debian, needs_libcxx: false }
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,23 +43,27 @@ jobs:
           registry: ${{ env.REGISTRY_HOST }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
-      
+        
       # Only run this step for debian-aarch64 images
       - name: Install latest libc++-dev for cross build
         if: matrix.needs_libcxx == true
-        uses: addnab/docker-run-action@v3
-        with:
-          image: node:slim
-          options: '--platform linux/arm64 --user 0:0 -e GITHUB_TOKEN -v ${{ github.workspace }}/lib/llvm-18:/usr/lib/llvm-18'
-          run: >-
-            apt update &&
-            apt install -y wget gnupg2 &&
-            wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - &&
-            echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main" >> /etc/apt/sources.list &&
-            echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main" >> /etc/apt/sources.list &&
-            apt update &&
-            apt install libc++-18-dev libc++abi-18-dev -y --fix-missing --no-install-recommends &&
-            rm /usr/lib/llvm-18/lib/libc++abi.so
+        run: |
+            podman pull node:slim
+            podman run --rm \
+              --platform linux/arm64 \
+              --user 0:0 \
+              -v ${{ github.workspace }}/lib/llvm-18:/usr/lib/llvm-18 \
+              node:slim \
+              /bin/sh -c "
+                apt update &&
+                apt install -y wget gnupg2 &&
+                wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - &&
+                echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main" >> /etc/apt/sources.list &&
+                echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main" >> /etc/apt/sources.list &&
+                apt update &&
+                apt install libc++-18-dev libc++abi-18-dev -y --fix-missing --no-install-recommends &&
+                rm /usr/lib/llvm-18/lib/libc++abi.so
+              "
 
       - name: Build image
         id: build-image

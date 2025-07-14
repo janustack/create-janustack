@@ -3,8 +3,7 @@
 	"author": "Andrew Christian Young (https://andrewcwhy.me/)",
 	"devDependencies": {
 		"@biomejs/biome": "^2.1.1",
-		"@moonrepo/cli": "^1.38.5",
-		"typescript": "^5.8.3"
+		"@moonrepo/cli": "^1.38.5"
 	},
 	"description": "Monorepo for create-janustack.",
 	"private": true,
@@ -15,5 +14,7 @@
 		"packages": [
 			"packages/*"
 		]
-	}
+	},
+	"module": "index.ts",
+	"type": "module"
 }
