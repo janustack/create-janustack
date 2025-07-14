@@ -43,6 +43,11 @@ jobs:
           registry: ${{ env.REGISTRY_HOST }}
           username: ${{ env.REGISTRY_USER }}
           password: ${{ env.REGISTRY_PASSWORD }}
+
+      # Create directory for libc++ if needed
+      - name: Create directory for libc++
+        if: matrix.needs_libcxx == true
+        run: mkdir -p ${{ github.workspace }}/lib/llvm-18
         
       # Only run this step for debian-aarch64 images
       - name: Install latest libc++-dev for cross build
@@ -58,8 +63,8 @@ jobs:
                 apt update &&
                 apt install -y wget gnupg2 &&
                 wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - &&
-                echo "deb http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main" >> /etc/apt/sources.list &&
-                echo "deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main" >> /etc/apt/sources.list &&
+                echo 'deb http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main' >> /etc/apt/sources.list &&
+                echo 'deb-src http://apt.llvm.org/focal/ llvm-toolchain-focal-18 main' >> /etc/apt/sources.list &&
                 apt update &&
                 apt install libc++-18-dev libc++abi-18-dev -y --fix-missing --no-install-recommends &&
                 rm /usr/lib/llvm-18/lib/libc++abi.so
