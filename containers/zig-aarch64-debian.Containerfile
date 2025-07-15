@@ -1,27 +1,32 @@
-FROM messense/manylinux2014-cross:aarch64
+FROM debian:latest
 
-ENV TARGET=aarch64-unknown-linux-gnu \
-  CC="zig cc" \
-  CXX="zig c++" \
-  CFLAGS="--sysroot=/usr/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot" \
-  CXXFLAGS="--sysroot=/usr/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot" \
+ARG ARCH = aarch64
+ARG DISTRO = Debian
+ARG ABI = glibc
+ARG TRIPLE = ${ARCH}-unknown-linux-${ABI}
+
+ENV \
+  CC="zig cc -target ${TRIPLE}" \
+  CXX="zig c++ -target ${TRIPLE}" \
+  CFLAGS="/usr/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot" \
+  CXXFLAGS="/usr/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot" \
   C_INCLUDE_PATH="/usr/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot/usr/include"
 
-RUN apt update && \
-  apt install -y --fix-missing --no-install-recommends curl gnupg gpg-agent ca-certificates openssl && \
-  apt update && \
-  apt install -y --fix-missing --no-install-recommends \
+
+RUN apt-get update && \
+  apt-get install -y --fix-missing --no-install-recommends curl gnupg gpg-agent ca-certificates openssl && \
+  apt-get update && \
+  apt-get install -y --fix-missing --no-install-recommends \
+  xz-utils \
+  rcs \
   bash \
+  ca-certificates \
   curl \
   git \
-  gzip \
   make \
-  ninja-build \
-  rcs \
-  tar \
-  unzip \
-  xz-utils && \
-  apt autoremove -y
+  cmake \
+  ninja-build && \
+  apt-get autoremove -y
 
 # Install Proto toolchain
 RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes

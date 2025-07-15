@@ -1,8 +1,15 @@
-FROM messense/manylinux2014-cross:x86_64
+FROM debian:latest
 
-ENV TARGET=x86_64-unknown-linux-gnu \
-  CC="zig cc" \
-  CXX="zig c++" \
+ARG ARCH = x86_64
+ARG DISTRO = debian
+ARG ABI = glibc
+ARG TRIPLE = ${ARCH}-unknown-linux-${ABI}
+
+ARG NASM_VERSION=2.16.03
+
+ENV \
+  CC="zig cc -target ${TRIPLE}" \
+  CXX="zig c++ -target ${TRIPLE}" \
   CARGO_HOME=/usr/local/cargo \
   PATH=/usr/local/cargo/bin:/root/.proto/bin:/root/.proto/shims:$PATH
 
@@ -24,6 +31,17 @@ RUN apt update && \
   unzip \
   xz-utils && \
   rm -rf /var/lib/apt/lists/*
+
+# Install NASM
+RUN wget https://www.nasm.us/pub/nasm/releasebuilds/${NASM_VERSION}/nasm-${NASM_VERSION}.tar.xz && \
+  tar -xf nasm-${NASM_VERSION}.tar.xz && \
+  cd nasm-${NASM_VERSION} && \
+  ./configure --prefix=/usr/ && \
+  make && \
+  make install && \
+  cd / && \
+  rm -rf nasm-${NASM_VERSION} && \
+  rm nasm-${NASM_VERSION}.tar.xz
 
 
 # Install Proto toolchain

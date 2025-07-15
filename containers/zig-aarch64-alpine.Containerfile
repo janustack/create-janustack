@@ -1,12 +1,16 @@
-
 FROM alpine:latest
 
-ENV PATH="$CARGO_HOME/bin:/root/.proto/bin:/root/.proto/shims:$PATH" \
+ARG ARCH = aarch64
+ARG DISTRO = alpine
+ARG ABI = musl
+ARG TRIPLE: ${ARCH}-unknown-linux-${ABI}
+
+ENV PATH="/aarch64-linux-musl-cross/bin:/root/.cargo/bin:$PATH" \
   RUSTFLAGS="-C target-feature=-crt-static" \
-  TARGET=aarch64-unknown-linux-musl \
-  CC="zig cc" \
-  CXX="zig c++" \
+  CC="zig cc -target ${TRIPLE}" \
+  CXX="zig c++ -target ${TRIPLE}" \
   GN_EXE=gn
+ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
 
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk update && \
@@ -26,6 +30,10 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposi
   wget \
   xz-dev \
   xz
+
+RUN wget https://github.com/napi-rs/napi-rs/releases/download/linux-musl-cross%4010/aarch64-linux-musl-cross.tgz && \
+  tar -xvf aarch64-linux-musl-cross.tgz && \
+  rm aarch64-linux-musl-cross.tgz
 
 # Install Proto toolchain
 RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
