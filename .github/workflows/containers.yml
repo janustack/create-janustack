@@ -50,7 +50,6 @@ jobs:
         run: |
             podman pull node:slim
             podman run --rm \
-              --platform linux/arm64 \
               --user 0:0 \
               -v ${{ github.workspace }}/lib/llvm-18:/usr/lib/llvm-18 \
               node:slim \

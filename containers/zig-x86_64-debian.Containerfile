@@ -8,25 +8,23 @@ ENV TARGET=x86_64-unknown-linux-gnu \
 
 RUN apt update && \
   apt install -y --no-install-recommends \
+  bash \
   ca-certificates \
   curl \
-  gpg-agent \
-  gnupg \
-  openssl && \
-  apt update && \
-  # - Install build dependencies
-  apt install -y --no-install-recommends \
-  bash \
-  curl \
   git \
+  gnupg \
+  gpg-agent \
   gzip \
   make \
+  nasm \
   ninja-build \
+  openssl \
   rcs \
   tar \
   unzip \
   xz-utils && \
   rm -rf /var/lib/apt/lists/*
+
 
 # Install Proto toolchain
 RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes
