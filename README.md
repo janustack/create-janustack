@@ -24,8 +24,21 @@ cargo install create-janustack --locked
 cargo create-janustack
 ```
 
-### Powershell
+## Versioning
+
+Delete the Local Tag:
+```bash
+git tag -d v0.1.0
+```
+(Optional) Delete the Remote Tag:
 
 ```bash
-irm https://raw.githubusercontent.com/janustack/create-janustack/main/scripts/create.ps1 | iex
+git push -d origin v0.1.0
+```
+
+Re-create the Tag and Push:
+
+```bash
+git tag v0.1.0
+git push origin v0.1.0
 ```

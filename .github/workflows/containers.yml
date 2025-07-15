@@ -22,11 +22,8 @@ jobs:
       matrix:
         include:
         # - aarch64 architectures
-        - { name: aarch64-alpine, needs_libcxx: false }
         - { name: aarch64-debian, needs_libcxx: true }
-        # - x86_64 architectures
-        - { name: x86_64-debian, needs_libcxx: false }
-        # - Zig cross builds
+        # - Zig tools
         - { name: zig-alpine, needs_libcxx: false }
         - { name: zig-debian, needs_libcxx: false }
 

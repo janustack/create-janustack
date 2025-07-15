@@ -17,6 +17,9 @@ pub struct Args {
 
     #[arg(short, long, help = "Project template to use")]
     pub template: Option<Template>,
+    
+    #[arg(long, help = "Initialize a Git repository", action = ArgAction::SetTrue)]
+    pub git: bool,
 
     #[arg(short, long, help = "Force overwrite of existing files", action = ArgAction::SetTrue)]
     pub force: bool,
@@ -28,6 +31,7 @@ impl Default for Args {
             project_name: Some("janustack-project".to_string()),
             manager: Some(PackageManager::Bun),
             template: Some(Template::Janext),
+            git: false,
             force: false,
         }
     }

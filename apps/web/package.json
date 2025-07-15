@@ -1,0 +1,9 @@
+{
+    "dependencies": {
+        "solid-js": "^1.9.7"
+    },
+  "devDependencies": {
+        "@janustack/vite-config-paths": "^1.0.0",
+        "vite": "^7.0.4"
+    }
+}
