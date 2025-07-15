@@ -21,11 +21,9 @@ jobs:
       fail-fast: false
       matrix:
         include:
-        # - aarch64 architectures
-        - { name: aarch64-debian, needs_libcxx: true }
-        # - Zig tools
-        - { name: zig-alpine, needs_libcxx: false }
-        - { name: zig-debian, needs_libcxx: false }
+        - { name: zig-aarch64-debian, needs_libcxx: true }
+        - { name: zig-aarch64-alpine, needs_libcxx: false }
+        - { name: zig-x86_64-debian, needs_libcxx: false }
 
     steps:
       - name: Checkout repository

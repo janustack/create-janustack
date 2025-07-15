@@ -1,15 +1,10 @@
 FROM messense/manylinux2014-cross:x86_64
 
-ARG NASM_VERSION=2.16.03
-
-ENV CARGO_HOME=/usr/local/cargo \
+ENV TARGET=x86_64-unknown-linux-gnu \
   CC="zig cc" \
-  CC_x86_64_unknown_linux_gnu=clang \
   CXX="zig c++" \
-  CXX_x86_64_unknown_linux_gnu=clang++ \
-  PATH=/usr/local/cargo/bin:/root/.proto/bin:/root/.proto/shims:$PATH \
-  RUST_TARGET=x86_64-unknown-linux-gnu
-ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
+  CARGO_HOME=/usr/local/cargo \
+  PATH=/usr/local/cargo/bin:/root/.proto/bin:/root/.proto/shims:$PATH
 
 RUN apt update && \
   apt install -y --no-install-recommends \
@@ -30,18 +25,8 @@ RUN apt update && \
   rcs \
   tar \
   unzip \
-  xz-utils && \ 
+  xz-utils && \
   rm -rf /var/lib/apt/lists/*
-
-RUN wget https://www.nasm.us/pub/nasm/releasebuilds/${NASM_VERSION}/nasm-${NASM_VERSION}.tar.xz && \
-  tar -xf nasm-${NASM_VERSION}.tar.xz && \
-  cd nasm-${NASM_VERSION} && \
-  ./configure --prefix=/usr/ && \
-  make && \
-  make install && \
-  cd / && \
-  rm -rf nasm-${NASM_VERSION} && \
-  rm nasm-${NASM_VERSION}.tar.xz
 
 # Install Proto toolchain
 RUN curl -fsSL https://moonrepo.dev/install/proto.sh | bash -s -- --yes

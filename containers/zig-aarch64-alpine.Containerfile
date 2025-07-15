@@ -3,6 +3,7 @@ FROM node:alpine
 
 ENV PATH="/aarch64-linux-musl-cross/bin:/root/.cargo/bin:$PATH" \
   RUSTFLAGS="-C target-feature=-crt-static" \
+  TARGET=aarch64-unknown-linux-musl \
   CC="zig cc" \
   CXX="zig c++" \
   GN_EXE=gn
@@ -18,7 +19,6 @@ RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/reposi
   git \
   gn \
   gzip \
-  llvm \
   musl-dev \
   readline \
   tar \
@@ -50,7 +50,7 @@ RUN proto plugin add cmake "https://raw.githubusercontent.com/Phault/proto-toml-
 
 # Verify installed tools
 RUN echo "----- Verifying installed tools -----" && \
-  echo -n "Bun " && bun -v && which bun && \ 
+  echo -n "Bun " && bun -v && which bun && \
   cargo --version && which cargo && \
   cmake --version | head -n1 && which cmake && \
   echo -n "Ninja " && ninja --version && which ninja && \
