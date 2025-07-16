@@ -1,16 +1,16 @@
 FROM debian:latest
 
-ARG ARCH = aarch64
-ARG DISTRO = Debian
-ARG ABI = glibc
-ARG TRIPLE = ${ARCH}-unknown-linux-${ABI}
+ARG ARCH=aarch64
+ARG DISTRO=Debian
+ARG ABI=glibc
+ARG TRIPLE=${ARCH}-unknown-linux-${ABI}
 
 ENV \
   CC="zig cc -target ${TRIPLE}" \
   CXX="zig c++ -target ${TRIPLE}" \
-  CFLAGS="/usr/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot" \
-  CXXFLAGS="/usr/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot" \
-  C_INCLUDE_PATH="/usr/aarch64-unknown-linux-gnu/aarch64-unknown-linux-gnu/sysroot/usr/include"
+  CFLAGS="/usr/${TRIPLE}/${TRIPLE}/sysroot" \
+  CXXFLAGS="/usr/${TRIPLE}/${TRIPLE}/sysroot" \
+  C_INCLUDE_PATH="/usr/${TRIPLE}/${TRIPLE}/sysroot/usr/include"
 
 
 RUN apt-get update && \

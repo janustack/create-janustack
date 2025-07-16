@@ -1,9 +1,9 @@
 FROM debian:latest
 
-ARG ARCH = x86_64
-ARG DISTRO = debian
-ARG ABI = glibc
-ARG TRIPLE = ${ARCH}-unknown-linux-${ABI}
+ARG ARCH=x86_64
+ARG DISTRO=debian
+ARG ABI=glibc
+ARG TRIPLE=${ARCH}-unknown-linux-${ABI}
 
 ARG NASM_VERSION=2.16.03
 

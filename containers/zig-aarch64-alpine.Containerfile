@@ -1,16 +1,15 @@
 FROM alpine:latest
 
-ARG ARCH = aarch64
-ARG DISTRO = alpine
-ARG ABI = musl
+ARG ARCH=aarch64
+ARG DISTRO=alpine
+ARG ABI=musl
 ARG TRIPLE: ${ARCH}-unknown-linux-${ABI}
 
-ENV PATH="/aarch64-linux-musl-cross/bin:/root/.cargo/bin:$PATH" \
+ENV PATH="/root/.proto/bin:/root/.proto/shims:/root/.cargo/bin:/aarch64-linux-musl-cross/bin:$PATH" \
   RUSTFLAGS="-C target-feature=-crt-static" \
   CC="zig cc -target ${TRIPLE}" \
   CXX="zig c++ -target ${TRIPLE}" \
   GN_EXE=gn
-ENV PATH="/root/.proto/bin:/root/.proto/shims:$PATH"
 
 RUN echo "https://dl-cdn.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories && \
   apk update && \
