@@ -1,9 +1,9 @@
 FROM debian:latest
 
 ARG ARCH=aarch64
-ARG DISTRO=Debian
+ARG OS=linux
 ARG ABI=glibc
-ARG TRIPLE=${ARCH}-unknown-linux-${ABI}
+ARG TRIPLE=${ARCH}-unknown-${OS}-${ABI}
 
 ENV \
   CC="zig cc -target ${TRIPLE}" \
